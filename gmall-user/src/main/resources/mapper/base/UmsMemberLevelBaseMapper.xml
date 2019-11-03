@@ -363,7 +363,7 @@
     </update>
 
 
-    <resultMap type="top.lllyl2012.gmall.user.bean.UmsMemberLevel" id="UmsMemberLevelMap">
+    <resultMap type="top.lllyl2012.gmall.bean.UmsMemberLevel" id="UmsMemberLevelMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="growthPoint" column="growth_point"/>
@@ -424,7 +424,7 @@
             <if test="note != null and note!=''">
                 `note` = #{note} and
             </if>
-            <if test = "(_parameter instanceof top.lllyl2012.gmall.user.bean.UmsMemberLevel$QueryBuilder) == true">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberLevel$QueryBuilder) == true">
                 <if test="idList != null">
                     `id` in
                     <foreach collection="idList" close=")" open="(" separator="," item="item">
@@ -645,7 +645,7 @@
             <if test="note != null and note!=''">
                 `note` = #{note} and
             </if>
-            <if test = "(_parameter instanceof top.lllyl2012.gmall.user.bean.UmsMemberLevel$QueryBuilder) == true">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberLevel$QueryBuilder) == true">
                     <if test="idList != null">
                         `id` in
                         <foreach collection="idList" close=")" open="(" separator="," item="item">
@@ -845,7 +845,7 @@
 
     <sql id="baseResult">
         <trim suffixOverrides=",">
-            <if test = "(_parameter instanceof top.lllyl2012.gmall.user.bean.UmsMemberLevel$QueryBuilder) == true">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberLevel$QueryBuilder) == true">
 
                 <if test="fetchFields==null">
                     <include refid="allResult"></include>
@@ -946,7 +946,7 @@
                     </if>
                 </if>
             </if>
-            <if test="(_parameter instanceof top.lllyl2012.gmall.user.bean.UmsMemberLevel$QueryBuilder) == false" >
+            <if test="(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberLevel$QueryBuilder) == false" >
                 <include refid="allResult"></include>
             </if>
 

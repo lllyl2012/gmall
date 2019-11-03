@@ -1,8 +1,8 @@
 package top.lllyl2012.gmall.user.mapper.base;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
-import top.lllyl2012.gmall.user.bean.UmsMemberReceiveAddress;
+
+import top.lllyl2012.gmall.bean.UmsMemberReceiveAddress;
 /**
 *  @author volume
 */

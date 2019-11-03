@@ -1,4 +1,4 @@
-package top.lllyl2012.gmall.user.bean;
+package top.lllyl2012.gmall.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;

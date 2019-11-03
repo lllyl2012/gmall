@@ -331,7 +331,7 @@
     </update>
 
 
-    <resultMap type="top.lllyl2012.gmall.user.bean.UmsMemberReceiveAddress" id="UmsMemberReceiveAddressMap">
+    <resultMap type="top.lllyl2012.gmall.bean.UmsMemberReceiveAddress" id="UmsMemberReceiveAddressMap">
         <result property="id" column="id"/>
         <result property="memberId" column="member_id"/>
         <result property="name" column="name"/>
@@ -380,7 +380,7 @@
             <if test="detailAddress != null and detailAddress!=''">
                 `detail_address` = #{detailAddress} and
             </if>
-            <if test = "(_parameter instanceof top.lllyl2012.gmall.user.bean.UmsMemberReceiveAddress$QueryBuilder) == true">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberReceiveAddress$QueryBuilder) == true">
                 <if test="idList != null">
                     `id` in
                     <foreach collection="idList" close=")" open="(" separator="," item="item">
@@ -596,7 +596,7 @@
             <if test="detailAddress != null and detailAddress!=''">
                 `detail_address` = #{detailAddress} and
             </if>
-            <if test = "(_parameter instanceof top.lllyl2012.gmall.user.bean.UmsMemberReceiveAddress$QueryBuilder) == true">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberReceiveAddress$QueryBuilder) == true">
                     <if test="idList != null">
                         `id` in
                         <foreach collection="idList" close=")" open="(" separator="," item="item">
@@ -797,7 +797,7 @@
 
     <sql id="baseResult">
         <trim suffixOverrides=",">
-            <if test = "(_parameter instanceof top.lllyl2012.gmall.user.bean.UmsMemberReceiveAddress$QueryBuilder) == true">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberReceiveAddress$QueryBuilder) == true">
 
                 <if test="fetchFields==null">
                     <include refid="allResult"></include>
@@ -880,7 +880,7 @@
                     </if>
                 </if>
             </if>
-            <if test="(_parameter instanceof top.lllyl2012.gmall.user.bean.UmsMemberReceiveAddress$QueryBuilder) == false" >
+            <if test="(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberReceiveAddress$QueryBuilder) == false" >
                 <include refid="allResult"></include>
             </if>
 

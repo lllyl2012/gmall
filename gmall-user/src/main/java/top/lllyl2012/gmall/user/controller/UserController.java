@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.lllyl2012.gmall.user.bean.UmsMember;
-import top.lllyl2012.gmall.user.bean.UmsMemberReceiveAddress;
-import top.lllyl2012.gmall.user.service.UserService;
+import top.lllyl2012.gmall.bean.UmsMember;
+import top.lllyl2012.gmall.bean.UmsMemberReceiveAddress;
+import top.lllyl2012.gmall.service.UserService;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class UserController {
 
     @RequestMapping("/getAddressByUserId")
     @ResponseBody
-    public UmsMemberReceiveAddress getAddressByUserId(UmsMemberReceiveAddress address) {
+    public List<UmsMemberReceiveAddress> getAddressByUserId(UmsMemberReceiveAddress address) {
         return userService.getAddressByUserId(address);
     }
 }

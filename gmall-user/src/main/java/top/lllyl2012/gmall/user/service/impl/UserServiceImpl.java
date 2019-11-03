@@ -2,21 +2,25 @@ package top.lllyl2012.gmall.user.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.lllyl2012.gmall.user.bean.UmsMember;
-import top.lllyl2012.gmall.user.bean.UmsMemberReceiveAddress;
+import top.lllyl2012.gmall.bean.UmsMember;
+import top.lllyl2012.gmall.bean.UmsMemberReceiveAddress;
 import top.lllyl2012.gmall.user.mapper.UmsMemberMapper;
 import top.lllyl2012.gmall.user.mapper.UmsMemberReceiveAddressMapper;
-import top.lllyl2012.gmall.user.service.UserService;
+import top.lllyl2012.gmall.service.UserService;
 
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UmsMemberMapper umsMemberMapper;
+    private final UmsMemberMapper umsMemberMapper;
+
+    private final UmsMemberReceiveAddressMapper addressMapper;
 
     @Autowired
-    private UmsMemberReceiveAddressMapper addressMapper;
+    public UserServiceImpl(UmsMemberMapper umsMemberMapper, UmsMemberReceiveAddressMapper addressMapper) {
+        this.umsMemberMapper = umsMemberMapper;
+        this.addressMapper = addressMapper;
+    }
 
     @Override
     public String index() {
@@ -29,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UmsMemberReceiveAddress getAddressByUserId(UmsMemberReceiveAddress address) {
-        return addressMapper.queryUmsMemberReceiveAddressLimit1(address);
+    public List<UmsMemberReceiveAddress> getAddressByUserId(UmsMemberReceiveAddress address) {
+        return addressMapper.queryUmsMemberReceiveAddress(address);
     }
 }
