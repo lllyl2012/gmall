@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>top.lllyl2012</groupId>
-            <artifactId>gmall-api</artifactId>
+            <artifactId>gmall-common-util</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
