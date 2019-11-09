@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lllyl2012.gmall.user.mapper.base.UmsMemberReceiveAddressBaseMapper">
+
+
+    <insert id="insertUmsMemberReceiveAddress"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `ums_member_receive_address`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="memberId!=null">
+                        `member_id`,
+                    </if>
+                    <if test="name!=null">
+                        `name`,
+                    </if>
+                    <if test="phoneNumber!=null">
+                        `phone_number`,
+                    </if>
+                    <if test="defaultStatus!=null">
+                        `default_status`,
+                    </if>
+                    <if test="postCode!=null">
+                        `post_code`,
+                    </if>
+                    <if test="province!=null">
+                        `province`,
+                    </if>
+                    <if test="city!=null">
+                        `city`,
+                    </if>
+                    <if test="region!=null">
+                        `region`,
+                    </if>
+                    <if test="detailAddress!=null">
+                        `detail_address`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="memberId!=null">
+                    #{memberId},
+                </if>
+                <if test="name!=null">
+                    #{name},
+                </if>
+                <if test="phoneNumber!=null">
+                    #{phoneNumber},
+                </if>
+                <if test="defaultStatus!=null">
+                    #{defaultStatus},
+                </if>
+                <if test="postCode!=null">
+                    #{postCode},
+                </if>
+                <if test="province!=null">
+                    #{province},
+                </if>
+                <if test="city!=null">
+                    #{city},
+                </if>
+                <if test="region!=null">
+                    #{region},
+                </if>
+                <if test="detailAddress!=null">
+                    #{detailAddress},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updateUmsMemberReceiveAddress">
+        UPDATE `ums_member_receive_address`
+        SET
+        <trim suffixOverrides=",">
+            <if test="memberId != null">
+                `member_id` = #{memberId},
+            </if>
+            <if test="name != null and name!=''">
+                `name` = #{name},
+            </if>
+            <if test="phoneNumber != null and phoneNumber!=''">
+                `phone_number` = #{phoneNumber},
+            </if>
+            <if test="defaultStatus != null">
+                `default_status` = #{defaultStatus},
+            </if>
+            <if test="postCode != null and postCode!=''">
+                `post_code` = #{postCode},
+            </if>
+            <if test="province != null and province!=''">
+                `province` = #{province},
+            </if>
+            <if test="city != null and city!=''">
+                `city` = #{city},
+            </if>
+            <if test="region != null and region!=''">
+                `region` = #{region},
+            </if>
+            <if test="detailAddress != null and detailAddress!=''">
+                `detail_address` = #{detailAddress},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `ums_member_receive_address`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.memberId != null">
+            `member_id` = #{set.memberId},
+        </if>
+        <if test="set.name != null and set.name!=''">
+            `name` = #{set.name},
+        </if>
+        <if test="set.phoneNumber != null and set.phoneNumber!=''">
+            `phone_number` = #{set.phoneNumber},
+        </if>
+        <if test="set.defaultStatus != null">
+            `default_status` = #{set.defaultStatus},
+        </if>
+        <if test="set.postCode != null and set.postCode!=''">
+            `post_code` = #{set.postCode},
+        </if>
+        <if test="set.province != null and set.province!=''">
+            `province` = #{set.province},
+        </if>
+        <if test="set.city != null and set.city!=''">
+            `city` = #{set.city},
+        </if>
+        <if test="set.region != null and set.region!=''">
+            `region` = #{set.region},
+        </if>
+        <if test="set.detailAddress != null and set.detailAddress!=''">
+            `detail_address` = #{set.detailAddress},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.memberIdList != null">
+                    `member_id` in
+                    <foreach collection="where.memberIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.memberIdSt !=null">
+                `member_id` >= #{where.memberIdSt} and
+            </if>
+            <if test="where.memberIdEd!=null">
+                `member_id` &lt;= #{where.memberIdEd} and
+            </if>
+                <if test="where.nameList != null">
+                    `name` in
+                    <foreach collection="where.nameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyName!=null and where.fuzzyName.size()>0">
+                (
+                <foreach collection="where.fuzzyName"  separator="or" item="item">
+                    `Name` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyName!=null and where.rightFuzzyName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyName"  separator="or" item="item">
+                    `Name` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.phoneNumberList != null">
+                    `phone_number` in
+                    <foreach collection="where.phoneNumberList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyPhoneNumber!=null and where.fuzzyPhoneNumber.size()>0">
+                (
+                <foreach collection="where.fuzzyPhoneNumber"  separator="or" item="item">
+                    `Phone_number` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyPhoneNumber!=null and where.rightFuzzyPhoneNumber.size()>0">
+                (
+                <foreach collection="where.rightFuzzyPhoneNumber"  separator="or" item="item">
+                    `Phone_number` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.defaultStatusList != null">
+                    `default_status` in
+                    <foreach collection="where.defaultStatusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.defaultStatusSt !=null">
+                `default_status` >= #{where.defaultStatusSt} and
+            </if>
+            <if test="where.defaultStatusEd!=null">
+                `default_status` &lt;= #{where.defaultStatusEd} and
+            </if>
+                <if test="where.postCodeList != null">
+                    `post_code` in
+                    <foreach collection="where.postCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyPostCode!=null and where.fuzzyPostCode.size()>0">
+                (
+                <foreach collection="where.fuzzyPostCode"  separator="or" item="item">
+                    `Post_code` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyPostCode!=null and where.rightFuzzyPostCode.size()>0">
+                (
+                <foreach collection="where.rightFuzzyPostCode"  separator="or" item="item">
+                    `Post_code` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.provinceList != null">
+                    `province` in
+                    <foreach collection="where.provinceList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyProvince!=null and where.fuzzyProvince.size()>0">
+                (
+                <foreach collection="where.fuzzyProvince"  separator="or" item="item">
+                    `Province` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyProvince!=null and where.rightFuzzyProvince.size()>0">
+                (
+                <foreach collection="where.rightFuzzyProvince"  separator="or" item="item">
+                    `Province` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.cityList != null">
+                    `city` in
+                    <foreach collection="where.cityList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyCity!=null and where.fuzzyCity.size()>0">
+                (
+                <foreach collection="where.fuzzyCity"  separator="or" item="item">
+                    `City` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyCity!=null and where.rightFuzzyCity.size()>0">
+                (
+                <foreach collection="where.rightFuzzyCity"  separator="or" item="item">
+                    `City` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.regionList != null">
+                    `region` in
+                    <foreach collection="where.regionList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyRegion!=null and where.fuzzyRegion.size()>0">
+                (
+                <foreach collection="where.fuzzyRegion"  separator="or" item="item">
+                    `Region` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRegion!=null and where.rightFuzzyRegion.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRegion"  separator="or" item="item">
+                    `Region` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.detailAddressList != null">
+                    `detail_address` in
+                    <foreach collection="where.detailAddressList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyDetailAddress!=null and where.fuzzyDetailAddress.size()>0">
+                (
+                <foreach collection="where.fuzzyDetailAddress"  separator="or" item="item">
+                    `Detail_address` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyDetailAddress!=null and where.rightFuzzyDetailAddress.size()>0">
+                (
+                <foreach collection="where.rightFuzzyDetailAddress"  separator="or" item="item">
+                    `Detail_address` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="top.lllyl2012.gmall.bean.UmsMemberReceiveAddress" id="UmsMemberReceiveAddressMap">
+        <result property="id" column="id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="name" column="name"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="defaultStatus" column="default_status"/>
+        <result property="postCode" column="post_code"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="region" column="region"/>
+        <result property="detailAddress" column="detail_address"/>
+    </resultMap>
+
+
+    <select id="queryUmsMemberReceiveAddress" resultMap="UmsMemberReceiveAddressMap">
+        select
+        <include refid="baseResult"></include>
+        from  `ums_member_receive_address`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="memberId != null">
+                `member_id` = #{memberId} and
+            </if>
+            <if test="name != null and name!=''">
+                `name` = #{name} and
+            </if>
+            <if test="phoneNumber != null and phoneNumber!=''">
+                `phone_number` = #{phoneNumber} and
+            </if>
+            <if test="defaultStatus != null">
+                `default_status` = #{defaultStatus} and
+            </if>
+            <if test="postCode != null and postCode!=''">
+                `post_code` = #{postCode} and
+            </if>
+            <if test="province != null and province!=''">
+                `province` = #{province} and
+            </if>
+            <if test="city != null and city!=''">
+                `city` = #{city} and
+            </if>
+            <if test="region != null and region!=''">
+                `region` = #{region} and
+            </if>
+            <if test="detailAddress != null and detailAddress!=''">
+                `detail_address` = #{detailAddress} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberReceiveAddress$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="memberIdList != null">
+                    `member_id` in
+                    <foreach collection="memberIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="memberIdSt !=null">
+                    `member_id` >= #{memberIdSt} and
+                </if>
+                <if test="memberIdEd!=null">
+                    `member_id` &lt;= #{memberIdEd} and
+                </if>
+                <if test="nameList != null">
+                    `name` in
+                    <foreach collection="nameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyName!=null and fuzzyName.size()>0">
+                    (
+                    <foreach collection="fuzzyName"  separator="or" item="item">
+                        `Name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyName!=null and rightFuzzyName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyName"  separator="or" item="item">
+                        `Name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="phoneNumberList != null">
+                    `phone_number` in
+                    <foreach collection="phoneNumberList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyPhoneNumber!=null and fuzzyPhoneNumber.size()>0">
+                    (
+                    <foreach collection="fuzzyPhoneNumber"  separator="or" item="item">
+                        `Phone_number` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPhoneNumber!=null and rightFuzzyPhoneNumber.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPhoneNumber"  separator="or" item="item">
+                        `Phone_number` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="defaultStatusList != null">
+                    `default_status` in
+                    <foreach collection="defaultStatusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="defaultStatusSt !=null">
+                    `default_status` >= #{defaultStatusSt} and
+                </if>
+                <if test="defaultStatusEd!=null">
+                    `default_status` &lt;= #{defaultStatusEd} and
+                </if>
+                <if test="postCodeList != null">
+                    `post_code` in
+                    <foreach collection="postCodeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyPostCode!=null and fuzzyPostCode.size()>0">
+                    (
+                    <foreach collection="fuzzyPostCode"  separator="or" item="item">
+                        `Post_code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPostCode!=null and rightFuzzyPostCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPostCode"  separator="or" item="item">
+                        `Post_code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="provinceList != null">
+                    `province` in
+                    <foreach collection="provinceList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyProvince!=null and fuzzyProvince.size()>0">
+                    (
+                    <foreach collection="fuzzyProvince"  separator="or" item="item">
+                        `Province` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyProvince!=null and rightFuzzyProvince.size()>0">
+                    (
+                    <foreach collection="rightFuzzyProvince"  separator="or" item="item">
+                        `Province` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="cityList != null">
+                    `city` in
+                    <foreach collection="cityList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCity!=null and fuzzyCity.size()>0">
+                    (
+                    <foreach collection="fuzzyCity"  separator="or" item="item">
+                        `City` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCity!=null and rightFuzzyCity.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCity"  separator="or" item="item">
+                        `City` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="regionList != null">
+                    `region` in
+                    <foreach collection="regionList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRegion!=null and fuzzyRegion.size()>0">
+                    (
+                    <foreach collection="fuzzyRegion"  separator="or" item="item">
+                        `Region` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRegion!=null and rightFuzzyRegion.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRegion"  separator="or" item="item">
+                        `Region` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="detailAddressList != null">
+                    `detail_address` in
+                    <foreach collection="detailAddressList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyDetailAddress!=null and fuzzyDetailAddress.size()>0">
+                    (
+                    <foreach collection="fuzzyDetailAddress"  separator="or" item="item">
+                        `Detail_address` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyDetailAddress!=null and rightFuzzyDetailAddress.size()>0">
+                    (
+                    <foreach collection="rightFuzzyDetailAddress"  separator="or" item="item">
+                        `Detail_address` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryUmsMemberReceiveAddressLimit1" resultMap="UmsMemberReceiveAddressMap">
+        select
+        <include refid="baseResult"></include>
+        from  `ums_member_receive_address`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="memberId != null">
+                `member_id` = #{memberId} and
+            </if>
+            <if test="name != null and name!=''">
+                `name` = #{name} and
+            </if>
+            <if test="phoneNumber != null and phoneNumber!=''">
+                `phone_number` = #{phoneNumber} and
+            </if>
+            <if test="defaultStatus != null">
+                `default_status` = #{defaultStatus} and
+            </if>
+            <if test="postCode != null and postCode!=''">
+                `post_code` = #{postCode} and
+            </if>
+            <if test="province != null and province!=''">
+                `province` = #{province} and
+            </if>
+            <if test="city != null and city!=''">
+                `city` = #{city} and
+            </if>
+            <if test="region != null and region!=''">
+                `region` = #{region} and
+            </if>
+            <if test="detailAddress != null and detailAddress!=''">
+                `detail_address` = #{detailAddress} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberReceiveAddress$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="memberIdList != null">
+                        `member_id` in
+                        <foreach collection="memberIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="memberIdSt !=null">
+                    `member_id` >= #{memberIdSt} and
+                </if>
+                <if test="memberIdEd!=null">
+                    `member_id` &lt;= #{memberIdEd} and
+                </if>
+                    <if test="nameList != null">
+                        `name` in
+                        <foreach collection="nameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyName!=null and fuzzyName.size()>0">
+                    (
+                    <foreach collection="fuzzyName"  separator="or" item="item">
+                        `Name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyName!=null and rightFuzzyName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyName"  separator="or" item="item">
+                        `Name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="phoneNumberList != null">
+                        `phone_number` in
+                        <foreach collection="phoneNumberList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyPhoneNumber!=null and fuzzyPhoneNumber.size()>0">
+                    (
+                    <foreach collection="fuzzyPhoneNumber"  separator="or" item="item">
+                        `Phone_number` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPhoneNumber!=null and rightFuzzyPhoneNumber.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPhoneNumber"  separator="or" item="item">
+                        `Phone_number` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="defaultStatusList != null">
+                        `default_status` in
+                        <foreach collection="defaultStatusList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="defaultStatusSt !=null">
+                    `default_status` >= #{defaultStatusSt} and
+                </if>
+                <if test="defaultStatusEd!=null">
+                    `default_status` &lt;= #{defaultStatusEd} and
+                </if>
+                    <if test="postCodeList != null">
+                        `post_code` in
+                        <foreach collection="postCodeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyPostCode!=null and fuzzyPostCode.size()>0">
+                    (
+                    <foreach collection="fuzzyPostCode"  separator="or" item="item">
+                        `Post_code` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPostCode!=null and rightFuzzyPostCode.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPostCode"  separator="or" item="item">
+                        `Post_code` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="provinceList != null">
+                        `province` in
+                        <foreach collection="provinceList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyProvince!=null and fuzzyProvince.size()>0">
+                    (
+                    <foreach collection="fuzzyProvince"  separator="or" item="item">
+                        `Province` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyProvince!=null and rightFuzzyProvince.size()>0">
+                    (
+                    <foreach collection="rightFuzzyProvince"  separator="or" item="item">
+                        `Province` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="cityList != null">
+                        `city` in
+                        <foreach collection="cityList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyCity!=null and fuzzyCity.size()>0">
+                    (
+                    <foreach collection="fuzzyCity"  separator="or" item="item">
+                        `City` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCity!=null and rightFuzzyCity.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCity"  separator="or" item="item">
+                        `City` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="regionList != null">
+                        `region` in
+                        <foreach collection="regionList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyRegion!=null and fuzzyRegion.size()>0">
+                    (
+                    <foreach collection="fuzzyRegion"  separator="or" item="item">
+                        `Region` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRegion!=null and rightFuzzyRegion.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRegion"  separator="or" item="item">
+                        `Region` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="detailAddressList != null">
+                        `detail_address` in
+                        <foreach collection="detailAddressList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyDetailAddress!=null and fuzzyDetailAddress.size()>0">
+                    (
+                    <foreach collection="fuzzyDetailAddress"  separator="or" item="item">
+                        `Detail_address` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyDetailAddress!=null and rightFuzzyDetailAddress.size()>0">
+                    (
+                    <foreach collection="rightFuzzyDetailAddress"  separator="or" item="item">
+                        `Detail_address` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `member_id`,
+        `name`,
+        `phone_number`,
+        `default_status`,
+        `post_code`,
+        `province`,
+        `city`,
+        `region`,
+        `detail_address`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberReceiveAddress$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.memberId==true">
+                        `member_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.name==true">
+                        `name`,
+                    </if>
+                    <if test="fetchFields.fetchFields.phoneNumber==true">
+                        `phone_number`,
+                    </if>
+                    <if test="fetchFields.fetchFields.defaultStatus==true">
+                        `default_status`,
+                    </if>
+                    <if test="fetchFields.fetchFields.postCode==true">
+                        `post_code`,
+                    </if>
+                    <if test="fetchFields.fetchFields.province==true">
+                        `province`,
+                    </if>
+                    <if test="fetchFields.fetchFields.city==true">
+                        `city`,
+                    </if>
+                    <if test="fetchFields.fetchFields.region==true">
+                        `region`,
+                    </if>
+                    <if test="fetchFields.fetchFields.detailAddress==true">
+                        `detail_address`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.memberId==null">
+                        `member_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.name==null">
+                        `name`,
+                    </if>
+                    <if test="fetchFields.excludeFields.phoneNumber==null">
+                        `phone_number`,
+                    </if>
+                    <if test="fetchFields.excludeFields.defaultStatus==null">
+                        `default_status`,
+                    </if>
+                    <if test="fetchFields.excludeFields.postCode==null">
+                        `post_code`,
+                    </if>
+                    <if test="fetchFields.excludeFields.province==null">
+                        `province`,
+                    </if>
+                    <if test="fetchFields.excludeFields.city==null">
+                        `city`,
+                    </if>
+                    <if test="fetchFields.excludeFields.region==null">
+                        `region`,
+                    </if>
+                    <if test="fetchFields.excludeFields.detailAddress==null">
+                        `detail_address`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof top.lllyl2012.gmall.bean.UmsMemberReceiveAddress$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

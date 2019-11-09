@@ -1,0 +1,1473 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lllyl2012.gmall.user.mapper.base.UmsMemberBaseMapper">
+
+
+    <insert id="insertUmsMember"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `ums_member`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="memberLevelId!=null">
+                        `member_level_id`,
+                    </if>
+                    <if test="username!=null">
+                        `username`,
+                    </if>
+                    <if test="password!=null">
+                        `password`,
+                    </if>
+                    <if test="nickname!=null">
+                        `nickname`,
+                    </if>
+                    <if test="phone!=null">
+                        `phone`,
+                    </if>
+                    <if test="status!=null">
+                        `status`,
+                    </if>
+                    <if test="createTime!=null">
+                        `create_time`,
+                    </if>
+                    <if test="icon!=null">
+                        `icon`,
+                    </if>
+                    <if test="gender!=null">
+                        `gender`,
+                    </if>
+                    <if test="birthday!=null">
+                        `birthday`,
+                    </if>
+                    <if test="city!=null">
+                        `city`,
+                    </if>
+                    <if test="job!=null">
+                        `job`,
+                    </if>
+                    <if test="personalizedSignature!=null">
+                        `personalized_signature`,
+                    </if>
+                    <if test="sourceType!=null">
+                        `source_type`,
+                    </if>
+                    <if test="integration!=null">
+                        `integration`,
+                    </if>
+                    <if test="growth!=null">
+                        `growth`,
+                    </if>
+                    <if test="luckeyCount!=null">
+                        `luckey_count`,
+                    </if>
+                    <if test="historyIntegration!=null">
+                        `history_integration`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="memberLevelId!=null">
+                    #{memberLevelId},
+                </if>
+                <if test="username!=null">
+                    #{username},
+                </if>
+                <if test="password!=null">
+                    #{password},
+                </if>
+                <if test="nickname!=null">
+                    #{nickname},
+                </if>
+                <if test="phone!=null">
+                    #{phone},
+                </if>
+                <if test="status!=null">
+                    #{status},
+                </if>
+                <if test="createTime!=null">
+                    #{createTime},
+                </if>
+                <if test="icon!=null">
+                    #{icon},
+                </if>
+                <if test="gender!=null">
+                    #{gender},
+                </if>
+                <if test="birthday!=null">
+                    #{birthday},
+                </if>
+                <if test="city!=null">
+                    #{city},
+                </if>
+                <if test="job!=null">
+                    #{job},
+                </if>
+                <if test="personalizedSignature!=null">
+                    #{personalizedSignature},
+                </if>
+                <if test="sourceType!=null">
+                    #{sourceType},
+                </if>
+                <if test="integration!=null">
+                    #{integration},
+                </if>
+                <if test="growth!=null">
+                    #{growth},
+                </if>
+                <if test="luckeyCount!=null">
+                    #{luckeyCount},
+                </if>
+                <if test="historyIntegration!=null">
+                    #{historyIntegration},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updateUmsMember">
+        UPDATE `ums_member`
+        SET
+        <trim suffixOverrides=",">
+            <if test="memberLevelId != null">
+                `member_level_id` = #{memberLevelId},
+            </if>
+            <if test="username != null and username!=''">
+                `username` = #{username},
+            </if>
+            <if test="password != null and password!=''">
+                `password` = #{password},
+            </if>
+            <if test="nickname != null and nickname!=''">
+                `nickname` = #{nickname},
+            </if>
+            <if test="phone != null and phone!=''">
+                `phone` = #{phone},
+            </if>
+            <if test="status != null">
+                `status` = #{status},
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime},
+            </if>
+            <if test="icon != null and icon!=''">
+                `icon` = #{icon},
+            </if>
+            <if test="gender != null">
+                `gender` = #{gender},
+            </if>
+            <if test="birthday != null">
+                `birthday` = #{birthday},
+            </if>
+            <if test="city != null and city!=''">
+                `city` = #{city},
+            </if>
+            <if test="job != null and job!=''">
+                `job` = #{job},
+            </if>
+            <if test="personalizedSignature != null and personalizedSignature!=''">
+                `personalized_signature` = #{personalizedSignature},
+            </if>
+            <if test="sourceType != null">
+                `source_type` = #{sourceType},
+            </if>
+            <if test="integration != null">
+                `integration` = #{integration},
+            </if>
+            <if test="growth != null">
+                `growth` = #{growth},
+            </if>
+            <if test="luckeyCount != null">
+                `luckey_count` = #{luckeyCount},
+            </if>
+            <if test="historyIntegration != null">
+                `history_integration` = #{historyIntegration},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `ums_member`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.memberLevelId != null">
+            `member_level_id` = #{set.memberLevelId},
+        </if>
+        <if test="set.username != null and set.username!=''">
+            `username` = #{set.username},
+        </if>
+        <if test="set.password != null and set.password!=''">
+            `password` = #{set.password},
+        </if>
+        <if test="set.nickname != null and set.nickname!=''">
+            `nickname` = #{set.nickname},
+        </if>
+        <if test="set.phone != null and set.phone!=''">
+            `phone` = #{set.phone},
+        </if>
+        <if test="set.status != null">
+            `status` = #{set.status},
+        </if>
+        <if test="set.createTime != null">
+            `create_time` = #{set.createTime},
+        </if>
+        <if test="set.icon != null and set.icon!=''">
+            `icon` = #{set.icon},
+        </if>
+        <if test="set.gender != null">
+            `gender` = #{set.gender},
+        </if>
+        <if test="set.birthday != null">
+            `birthday` = #{set.birthday},
+        </if>
+        <if test="set.city != null and set.city!=''">
+            `city` = #{set.city},
+        </if>
+        <if test="set.job != null and set.job!=''">
+            `job` = #{set.job},
+        </if>
+        <if test="set.personalizedSignature != null and set.personalizedSignature!=''">
+            `personalized_signature` = #{set.personalizedSignature},
+        </if>
+        <if test="set.sourceType != null">
+            `source_type` = #{set.sourceType},
+        </if>
+        <if test="set.integration != null">
+            `integration` = #{set.integration},
+        </if>
+        <if test="set.growth != null">
+            `growth` = #{set.growth},
+        </if>
+        <if test="set.luckeyCount != null">
+            `luckey_count` = #{set.luckeyCount},
+        </if>
+        <if test="set.historyIntegration != null">
+            `history_integration` = #{set.historyIntegration},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.memberLevelIdList != null">
+                    `member_level_id` in
+                    <foreach collection="where.memberLevelIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.memberLevelIdSt !=null">
+                `member_level_id` >= #{where.memberLevelIdSt} and
+            </if>
+            <if test="where.memberLevelIdEd!=null">
+                `member_level_id` &lt;= #{where.memberLevelIdEd} and
+            </if>
+                <if test="where.usernameList != null">
+                    `username` in
+                    <foreach collection="where.usernameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyUsername!=null and where.fuzzyUsername.size()>0">
+                (
+                <foreach collection="where.fuzzyUsername"  separator="or" item="item">
+                    `Username` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyUsername!=null and where.rightFuzzyUsername.size()>0">
+                (
+                <foreach collection="where.rightFuzzyUsername"  separator="or" item="item">
+                    `Username` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.passwordList != null">
+                    `password` in
+                    <foreach collection="where.passwordList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyPassword!=null and where.fuzzyPassword.size()>0">
+                (
+                <foreach collection="where.fuzzyPassword"  separator="or" item="item">
+                    `Password` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyPassword!=null and where.rightFuzzyPassword.size()>0">
+                (
+                <foreach collection="where.rightFuzzyPassword"  separator="or" item="item">
+                    `Password` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.nicknameList != null">
+                    `nickname` in
+                    <foreach collection="where.nicknameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyNickname!=null and where.fuzzyNickname.size()>0">
+                (
+                <foreach collection="where.fuzzyNickname"  separator="or" item="item">
+                    `Nickname` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyNickname!=null and where.rightFuzzyNickname.size()>0">
+                (
+                <foreach collection="where.rightFuzzyNickname"  separator="or" item="item">
+                    `Nickname` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.phoneList != null">
+                    `phone` in
+                    <foreach collection="where.phoneList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyPhone!=null and where.fuzzyPhone.size()>0">
+                (
+                <foreach collection="where.fuzzyPhone"  separator="or" item="item">
+                    `Phone` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyPhone!=null and where.rightFuzzyPhone.size()>0">
+                (
+                <foreach collection="where.rightFuzzyPhone"  separator="or" item="item">
+                    `Phone` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.statusList != null">
+                    `status` in
+                    <foreach collection="where.statusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.statusSt !=null">
+                `status` >= #{where.statusSt} and
+            </if>
+            <if test="where.statusEd!=null">
+                `status` &lt;= #{where.statusEd} and
+            </if>
+                <if test="where.createTimeList != null">
+                    `create_time` in
+                    <foreach collection="where.createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.createTimeSt !=null">
+                `create_time` >= #{where.createTimeSt} and
+            </if>
+            <if test="where.createTimeEd!=null">
+                `create_time` &lt;= #{where.createTimeEd} and
+            </if>
+                <if test="where.iconList != null">
+                    `icon` in
+                    <foreach collection="where.iconList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyIcon!=null and where.fuzzyIcon.size()>0">
+                (
+                <foreach collection="where.fuzzyIcon"  separator="or" item="item">
+                    `Icon` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyIcon!=null and where.rightFuzzyIcon.size()>0">
+                (
+                <foreach collection="where.rightFuzzyIcon"  separator="or" item="item">
+                    `Icon` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.genderList != null">
+                    `gender` in
+                    <foreach collection="where.genderList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.genderSt !=null">
+                `gender` >= #{where.genderSt} and
+            </if>
+            <if test="where.genderEd!=null">
+                `gender` &lt;= #{where.genderEd} and
+            </if>
+                <if test="where.birthdayList != null">
+                    `birthday` in
+                    <foreach collection="where.birthdayList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.birthdaySt !=null">
+                `birthday` >= #{where.birthdaySt} and
+            </if>
+            <if test="where.birthdayEd!=null">
+                `birthday` &lt;= #{where.birthdayEd} and
+            </if>
+                <if test="where.cityList != null">
+                    `city` in
+                    <foreach collection="where.cityList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyCity!=null and where.fuzzyCity.size()>0">
+                (
+                <foreach collection="where.fuzzyCity"  separator="or" item="item">
+                    `City` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyCity!=null and where.rightFuzzyCity.size()>0">
+                (
+                <foreach collection="where.rightFuzzyCity"  separator="or" item="item">
+                    `City` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.jobList != null">
+                    `job` in
+                    <foreach collection="where.jobList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyJob!=null and where.fuzzyJob.size()>0">
+                (
+                <foreach collection="where.fuzzyJob"  separator="or" item="item">
+                    `Job` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyJob!=null and where.rightFuzzyJob.size()>0">
+                (
+                <foreach collection="where.rightFuzzyJob"  separator="or" item="item">
+                    `Job` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.personalizedSignatureList != null">
+                    `personalized_signature` in
+                    <foreach collection="where.personalizedSignatureList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyPersonalizedSignature!=null and where.fuzzyPersonalizedSignature.size()>0">
+                (
+                <foreach collection="where.fuzzyPersonalizedSignature"  separator="or" item="item">
+                    `Personalized_signature` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyPersonalizedSignature!=null and where.rightFuzzyPersonalizedSignature.size()>0">
+                (
+                <foreach collection="where.rightFuzzyPersonalizedSignature"  separator="or" item="item">
+                    `Personalized_signature` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.sourceTypeList != null">
+                    `source_type` in
+                    <foreach collection="where.sourceTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.sourceTypeSt !=null">
+                `source_type` >= #{where.sourceTypeSt} and
+            </if>
+            <if test="where.sourceTypeEd!=null">
+                `source_type` &lt;= #{where.sourceTypeEd} and
+            </if>
+                <if test="where.integrationList != null">
+                    `integration` in
+                    <foreach collection="where.integrationList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.integrationSt !=null">
+                `integration` >= #{where.integrationSt} and
+            </if>
+            <if test="where.integrationEd!=null">
+                `integration` &lt;= #{where.integrationEd} and
+            </if>
+                <if test="where.growthList != null">
+                    `growth` in
+                    <foreach collection="where.growthList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.growthSt !=null">
+                `growth` >= #{where.growthSt} and
+            </if>
+            <if test="where.growthEd!=null">
+                `growth` &lt;= #{where.growthEd} and
+            </if>
+                <if test="where.luckeyCountList != null">
+                    `luckey_count` in
+                    <foreach collection="where.luckeyCountList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.luckeyCountSt !=null">
+                `luckey_count` >= #{where.luckeyCountSt} and
+            </if>
+            <if test="where.luckeyCountEd!=null">
+                `luckey_count` &lt;= #{where.luckeyCountEd} and
+            </if>
+                <if test="where.historyIntegrationList != null">
+                    `history_integration` in
+                    <foreach collection="where.historyIntegrationList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.historyIntegrationSt !=null">
+                `history_integration` >= #{where.historyIntegrationSt} and
+            </if>
+            <if test="where.historyIntegrationEd!=null">
+                `history_integration` &lt;= #{where.historyIntegrationEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="top.lllyl2012.gmall.bean.UmsMember" id="UmsMemberMap">
+        <result property="id" column="id"/>
+        <result property="memberLevelId" column="member_level_id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="nickname" column="nickname"/>
+        <result property="phone" column="phone"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="icon" column="icon"/>
+        <result property="gender" column="gender"/>
+        <result property="birthday" column="birthday"/>
+        <result property="city" column="city"/>
+        <result property="job" column="job"/>
+        <result property="personalizedSignature" column="personalized_signature"/>
+        <result property="sourceType" column="source_type"/>
+        <result property="integration" column="integration"/>
+        <result property="growth" column="growth"/>
+        <result property="luckeyCount" column="luckey_count"/>
+        <result property="historyIntegration" column="history_integration"/>
+    </resultMap>
+
+
+    <select id="queryUmsMember" resultMap="UmsMemberMap">
+        select
+        <include refid="baseResult"></include>
+        from  `ums_member`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="memberLevelId != null">
+                `member_level_id` = #{memberLevelId} and
+            </if>
+            <if test="username != null and username!=''">
+                `username` = #{username} and
+            </if>
+            <if test="password != null and password!=''">
+                `password` = #{password} and
+            </if>
+            <if test="nickname != null and nickname!=''">
+                `nickname` = #{nickname} and
+            </if>
+            <if test="phone != null and phone!=''">
+                `phone` = #{phone} and
+            </if>
+            <if test="status != null">
+                `status` = #{status} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="icon != null and icon!=''">
+                `icon` = #{icon} and
+            </if>
+            <if test="gender != null">
+                `gender` = #{gender} and
+            </if>
+            <if test="birthday != null">
+                `birthday` = #{birthday} and
+            </if>
+            <if test="city != null and city!=''">
+                `city` = #{city} and
+            </if>
+            <if test="job != null and job!=''">
+                `job` = #{job} and
+            </if>
+            <if test="personalizedSignature != null and personalizedSignature!=''">
+                `personalized_signature` = #{personalizedSignature} and
+            </if>
+            <if test="sourceType != null">
+                `source_type` = #{sourceType} and
+            </if>
+            <if test="integration != null">
+                `integration` = #{integration} and
+            </if>
+            <if test="growth != null">
+                `growth` = #{growth} and
+            </if>
+            <if test="luckeyCount != null">
+                `luckey_count` = #{luckeyCount} and
+            </if>
+            <if test="historyIntegration != null">
+                `history_integration` = #{historyIntegration} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMember$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="memberLevelIdList != null">
+                    `member_level_id` in
+                    <foreach collection="memberLevelIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="memberLevelIdSt !=null">
+                    `member_level_id` >= #{memberLevelIdSt} and
+                </if>
+                <if test="memberLevelIdEd!=null">
+                    `member_level_id` &lt;= #{memberLevelIdEd} and
+                </if>
+                <if test="usernameList != null">
+                    `username` in
+                    <foreach collection="usernameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyUsername!=null and fuzzyUsername.size()>0">
+                    (
+                    <foreach collection="fuzzyUsername"  separator="or" item="item">
+                        `Username` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyUsername!=null and rightFuzzyUsername.size()>0">
+                    (
+                    <foreach collection="rightFuzzyUsername"  separator="or" item="item">
+                        `Username` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="passwordList != null">
+                    `password` in
+                    <foreach collection="passwordList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyPassword!=null and fuzzyPassword.size()>0">
+                    (
+                    <foreach collection="fuzzyPassword"  separator="or" item="item">
+                        `Password` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPassword!=null and rightFuzzyPassword.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPassword"  separator="or" item="item">
+                        `Password` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="nicknameList != null">
+                    `nickname` in
+                    <foreach collection="nicknameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyNickname!=null and fuzzyNickname.size()>0">
+                    (
+                    <foreach collection="fuzzyNickname"  separator="or" item="item">
+                        `Nickname` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyNickname!=null and rightFuzzyNickname.size()>0">
+                    (
+                    <foreach collection="rightFuzzyNickname"  separator="or" item="item">
+                        `Nickname` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="phoneList != null">
+                    `phone` in
+                    <foreach collection="phoneList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyPhone!=null and fuzzyPhone.size()>0">
+                    (
+                    <foreach collection="fuzzyPhone"  separator="or" item="item">
+                        `Phone` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPhone!=null and rightFuzzyPhone.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPhone"  separator="or" item="item">
+                        `Phone` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="statusList != null">
+                    `status` in
+                    <foreach collection="statusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="statusSt !=null">
+                    `status` >= #{statusSt} and
+                </if>
+                <if test="statusEd!=null">
+                    `status` &lt;= #{statusEd} and
+                </if>
+                <if test="createTimeList != null">
+                    `create_time` in
+                    <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                <if test="iconList != null">
+                    `icon` in
+                    <foreach collection="iconList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyIcon!=null and fuzzyIcon.size()>0">
+                    (
+                    <foreach collection="fuzzyIcon"  separator="or" item="item">
+                        `Icon` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyIcon!=null and rightFuzzyIcon.size()>0">
+                    (
+                    <foreach collection="rightFuzzyIcon"  separator="or" item="item">
+                        `Icon` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="genderList != null">
+                    `gender` in
+                    <foreach collection="genderList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="genderSt !=null">
+                    `gender` >= #{genderSt} and
+                </if>
+                <if test="genderEd!=null">
+                    `gender` &lt;= #{genderEd} and
+                </if>
+                <if test="birthdayList != null">
+                    `birthday` in
+                    <foreach collection="birthdayList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="birthdaySt !=null">
+                    `birthday` >= #{birthdaySt} and
+                </if>
+                <if test="birthdayEd!=null">
+                    `birthday` &lt;= #{birthdayEd} and
+                </if>
+                <if test="cityList != null">
+                    `city` in
+                    <foreach collection="cityList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCity!=null and fuzzyCity.size()>0">
+                    (
+                    <foreach collection="fuzzyCity"  separator="or" item="item">
+                        `City` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCity!=null and rightFuzzyCity.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCity"  separator="or" item="item">
+                        `City` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="jobList != null">
+                    `job` in
+                    <foreach collection="jobList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyJob!=null and fuzzyJob.size()>0">
+                    (
+                    <foreach collection="fuzzyJob"  separator="or" item="item">
+                        `Job` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyJob!=null and rightFuzzyJob.size()>0">
+                    (
+                    <foreach collection="rightFuzzyJob"  separator="or" item="item">
+                        `Job` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="personalizedSignatureList != null">
+                    `personalized_signature` in
+                    <foreach collection="personalizedSignatureList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyPersonalizedSignature!=null and fuzzyPersonalizedSignature.size()>0">
+                    (
+                    <foreach collection="fuzzyPersonalizedSignature"  separator="or" item="item">
+                        `Personalized_signature` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPersonalizedSignature!=null and rightFuzzyPersonalizedSignature.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPersonalizedSignature"  separator="or" item="item">
+                        `Personalized_signature` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="sourceTypeList != null">
+                    `source_type` in
+                    <foreach collection="sourceTypeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="sourceTypeSt !=null">
+                    `source_type` >= #{sourceTypeSt} and
+                </if>
+                <if test="sourceTypeEd!=null">
+                    `source_type` &lt;= #{sourceTypeEd} and
+                </if>
+                <if test="integrationList != null">
+                    `integration` in
+                    <foreach collection="integrationList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="integrationSt !=null">
+                    `integration` >= #{integrationSt} and
+                </if>
+                <if test="integrationEd!=null">
+                    `integration` &lt;= #{integrationEd} and
+                </if>
+                <if test="growthList != null">
+                    `growth` in
+                    <foreach collection="growthList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="growthSt !=null">
+                    `growth` >= #{growthSt} and
+                </if>
+                <if test="growthEd!=null">
+                    `growth` &lt;= #{growthEd} and
+                </if>
+                <if test="luckeyCountList != null">
+                    `luckey_count` in
+                    <foreach collection="luckeyCountList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="luckeyCountSt !=null">
+                    `luckey_count` >= #{luckeyCountSt} and
+                </if>
+                <if test="luckeyCountEd!=null">
+                    `luckey_count` &lt;= #{luckeyCountEd} and
+                </if>
+                <if test="historyIntegrationList != null">
+                    `history_integration` in
+                    <foreach collection="historyIntegrationList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="historyIntegrationSt !=null">
+                    `history_integration` >= #{historyIntegrationSt} and
+                </if>
+                <if test="historyIntegrationEd!=null">
+                    `history_integration` &lt;= #{historyIntegrationEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryUmsMemberLimit1" resultMap="UmsMemberMap">
+        select
+        <include refid="baseResult"></include>
+        from  `ums_member`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="memberLevelId != null">
+                `member_level_id` = #{memberLevelId} and
+            </if>
+            <if test="username != null and username!=''">
+                `username` = #{username} and
+            </if>
+            <if test="password != null and password!=''">
+                `password` = #{password} and
+            </if>
+            <if test="nickname != null and nickname!=''">
+                `nickname` = #{nickname} and
+            </if>
+            <if test="phone != null and phone!=''">
+                `phone` = #{phone} and
+            </if>
+            <if test="status != null">
+                `status` = #{status} and
+            </if>
+            <if test="createTime != null">
+                `create_time` = #{createTime} and
+            </if>
+            <if test="icon != null and icon!=''">
+                `icon` = #{icon} and
+            </if>
+            <if test="gender != null">
+                `gender` = #{gender} and
+            </if>
+            <if test="birthday != null">
+                `birthday` = #{birthday} and
+            </if>
+            <if test="city != null and city!=''">
+                `city` = #{city} and
+            </if>
+            <if test="job != null and job!=''">
+                `job` = #{job} and
+            </if>
+            <if test="personalizedSignature != null and personalizedSignature!=''">
+                `personalized_signature` = #{personalizedSignature} and
+            </if>
+            <if test="sourceType != null">
+                `source_type` = #{sourceType} and
+            </if>
+            <if test="integration != null">
+                `integration` = #{integration} and
+            </if>
+            <if test="growth != null">
+                `growth` = #{growth} and
+            </if>
+            <if test="luckeyCount != null">
+                `luckey_count` = #{luckeyCount} and
+            </if>
+            <if test="historyIntegration != null">
+                `history_integration` = #{historyIntegration} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMember$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="memberLevelIdList != null">
+                        `member_level_id` in
+                        <foreach collection="memberLevelIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="memberLevelIdSt !=null">
+                    `member_level_id` >= #{memberLevelIdSt} and
+                </if>
+                <if test="memberLevelIdEd!=null">
+                    `member_level_id` &lt;= #{memberLevelIdEd} and
+                </if>
+                    <if test="usernameList != null">
+                        `username` in
+                        <foreach collection="usernameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyUsername!=null and fuzzyUsername.size()>0">
+                    (
+                    <foreach collection="fuzzyUsername"  separator="or" item="item">
+                        `Username` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyUsername!=null and rightFuzzyUsername.size()>0">
+                    (
+                    <foreach collection="rightFuzzyUsername"  separator="or" item="item">
+                        `Username` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="passwordList != null">
+                        `password` in
+                        <foreach collection="passwordList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyPassword!=null and fuzzyPassword.size()>0">
+                    (
+                    <foreach collection="fuzzyPassword"  separator="or" item="item">
+                        `Password` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPassword!=null and rightFuzzyPassword.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPassword"  separator="or" item="item">
+                        `Password` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="nicknameList != null">
+                        `nickname` in
+                        <foreach collection="nicknameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyNickname!=null and fuzzyNickname.size()>0">
+                    (
+                    <foreach collection="fuzzyNickname"  separator="or" item="item">
+                        `Nickname` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyNickname!=null and rightFuzzyNickname.size()>0">
+                    (
+                    <foreach collection="rightFuzzyNickname"  separator="or" item="item">
+                        `Nickname` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="phoneList != null">
+                        `phone` in
+                        <foreach collection="phoneList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyPhone!=null and fuzzyPhone.size()>0">
+                    (
+                    <foreach collection="fuzzyPhone"  separator="or" item="item">
+                        `Phone` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPhone!=null and rightFuzzyPhone.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPhone"  separator="or" item="item">
+                        `Phone` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="statusList != null">
+                        `status` in
+                        <foreach collection="statusList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="statusSt !=null">
+                    `status` >= #{statusSt} and
+                </if>
+                <if test="statusEd!=null">
+                    `status` &lt;= #{statusEd} and
+                </if>
+                    <if test="createTimeList != null">
+                        `create_time` in
+                        <foreach collection="createTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="createTimeSt !=null">
+                    `create_time` >= #{createTimeSt} and
+                </if>
+                <if test="createTimeEd!=null">
+                    `create_time` &lt;= #{createTimeEd} and
+                </if>
+                    <if test="iconList != null">
+                        `icon` in
+                        <foreach collection="iconList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyIcon!=null and fuzzyIcon.size()>0">
+                    (
+                    <foreach collection="fuzzyIcon"  separator="or" item="item">
+                        `Icon` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyIcon!=null and rightFuzzyIcon.size()>0">
+                    (
+                    <foreach collection="rightFuzzyIcon"  separator="or" item="item">
+                        `Icon` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="genderList != null">
+                        `gender` in
+                        <foreach collection="genderList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="genderSt !=null">
+                    `gender` >= #{genderSt} and
+                </if>
+                <if test="genderEd!=null">
+                    `gender` &lt;= #{genderEd} and
+                </if>
+                    <if test="birthdayList != null">
+                        `birthday` in
+                        <foreach collection="birthdayList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="birthdaySt !=null">
+                    `birthday` >= #{birthdaySt} and
+                </if>
+                <if test="birthdayEd!=null">
+                    `birthday` &lt;= #{birthdayEd} and
+                </if>
+                    <if test="cityList != null">
+                        `city` in
+                        <foreach collection="cityList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyCity!=null and fuzzyCity.size()>0">
+                    (
+                    <foreach collection="fuzzyCity"  separator="or" item="item">
+                        `City` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCity!=null and rightFuzzyCity.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCity"  separator="or" item="item">
+                        `City` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="jobList != null">
+                        `job` in
+                        <foreach collection="jobList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyJob!=null and fuzzyJob.size()>0">
+                    (
+                    <foreach collection="fuzzyJob"  separator="or" item="item">
+                        `Job` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyJob!=null and rightFuzzyJob.size()>0">
+                    (
+                    <foreach collection="rightFuzzyJob"  separator="or" item="item">
+                        `Job` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="personalizedSignatureList != null">
+                        `personalized_signature` in
+                        <foreach collection="personalizedSignatureList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyPersonalizedSignature!=null and fuzzyPersonalizedSignature.size()>0">
+                    (
+                    <foreach collection="fuzzyPersonalizedSignature"  separator="or" item="item">
+                        `Personalized_signature` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPersonalizedSignature!=null and rightFuzzyPersonalizedSignature.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPersonalizedSignature"  separator="or" item="item">
+                        `Personalized_signature` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="sourceTypeList != null">
+                        `source_type` in
+                        <foreach collection="sourceTypeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="sourceTypeSt !=null">
+                    `source_type` >= #{sourceTypeSt} and
+                </if>
+                <if test="sourceTypeEd!=null">
+                    `source_type` &lt;= #{sourceTypeEd} and
+                </if>
+                    <if test="integrationList != null">
+                        `integration` in
+                        <foreach collection="integrationList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="integrationSt !=null">
+                    `integration` >= #{integrationSt} and
+                </if>
+                <if test="integrationEd!=null">
+                    `integration` &lt;= #{integrationEd} and
+                </if>
+                    <if test="growthList != null">
+                        `growth` in
+                        <foreach collection="growthList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="growthSt !=null">
+                    `growth` >= #{growthSt} and
+                </if>
+                <if test="growthEd!=null">
+                    `growth` &lt;= #{growthEd} and
+                </if>
+                    <if test="luckeyCountList != null">
+                        `luckey_count` in
+                        <foreach collection="luckeyCountList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="luckeyCountSt !=null">
+                    `luckey_count` >= #{luckeyCountSt} and
+                </if>
+                <if test="luckeyCountEd!=null">
+                    `luckey_count` &lt;= #{luckeyCountEd} and
+                </if>
+                    <if test="historyIntegrationList != null">
+                        `history_integration` in
+                        <foreach collection="historyIntegrationList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="historyIntegrationSt !=null">
+                    `history_integration` >= #{historyIntegrationSt} and
+                </if>
+                <if test="historyIntegrationEd!=null">
+                    `history_integration` &lt;= #{historyIntegrationEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `member_level_id`,
+        `username`,
+        `password`,
+        `nickname`,
+        `phone`,
+        `status`,
+        `create_time`,
+        `icon`,
+        `gender`,
+        `birthday`,
+        `city`,
+        `job`,
+        `personalized_signature`,
+        `source_type`,
+        `integration`,
+        `growth`,
+        `luckey_count`,
+        `history_integration`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.UmsMember$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.memberLevelId==true">
+                        `member_level_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.username==true">
+                        `username`,
+                    </if>
+                    <if test="fetchFields.fetchFields.password==true">
+                        `password`,
+                    </if>
+                    <if test="fetchFields.fetchFields.nickname==true">
+                        `nickname`,
+                    </if>
+                    <if test="fetchFields.fetchFields.phone==true">
+                        `phone`,
+                    </if>
+                    <if test="fetchFields.fetchFields.status==true">
+                        `status`,
+                    </if>
+                    <if test="fetchFields.fetchFields.createTime==true">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.fetchFields.icon==true">
+                        `icon`,
+                    </if>
+                    <if test="fetchFields.fetchFields.gender==true">
+                        `gender`,
+                    </if>
+                    <if test="fetchFields.fetchFields.birthday==true">
+                        `birthday`,
+                    </if>
+                    <if test="fetchFields.fetchFields.city==true">
+                        `city`,
+                    </if>
+                    <if test="fetchFields.fetchFields.job==true">
+                        `job`,
+                    </if>
+                    <if test="fetchFields.fetchFields.personalizedSignature==true">
+                        `personalized_signature`,
+                    </if>
+                    <if test="fetchFields.fetchFields.sourceType==true">
+                        `source_type`,
+                    </if>
+                    <if test="fetchFields.fetchFields.integration==true">
+                        `integration`,
+                    </if>
+                    <if test="fetchFields.fetchFields.growth==true">
+                        `growth`,
+                    </if>
+                    <if test="fetchFields.fetchFields.luckeyCount==true">
+                        `luckey_count`,
+                    </if>
+                    <if test="fetchFields.fetchFields.historyIntegration==true">
+                        `history_integration`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.memberLevelId==null">
+                        `member_level_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.username==null">
+                        `username`,
+                    </if>
+                    <if test="fetchFields.excludeFields.password==null">
+                        `password`,
+                    </if>
+                    <if test="fetchFields.excludeFields.nickname==null">
+                        `nickname`,
+                    </if>
+                    <if test="fetchFields.excludeFields.phone==null">
+                        `phone`,
+                    </if>
+                    <if test="fetchFields.excludeFields.status==null">
+                        `status`,
+                    </if>
+                    <if test="fetchFields.excludeFields.createTime==null">
+                        `create_time`,
+                    </if>
+                    <if test="fetchFields.excludeFields.icon==null">
+                        `icon`,
+                    </if>
+                    <if test="fetchFields.excludeFields.gender==null">
+                        `gender`,
+                    </if>
+                    <if test="fetchFields.excludeFields.birthday==null">
+                        `birthday`,
+                    </if>
+                    <if test="fetchFields.excludeFields.city==null">
+                        `city`,
+                    </if>
+                    <if test="fetchFields.excludeFields.job==null">
+                        `job`,
+                    </if>
+                    <if test="fetchFields.excludeFields.personalizedSignature==null">
+                        `personalized_signature`,
+                    </if>
+                    <if test="fetchFields.excludeFields.sourceType==null">
+                        `source_type`,
+                    </if>
+                    <if test="fetchFields.excludeFields.integration==null">
+                        `integration`,
+                    </if>
+                    <if test="fetchFields.excludeFields.growth==null">
+                        `growth`,
+                    </if>
+                    <if test="fetchFields.excludeFields.luckeyCount==null">
+                        `luckey_count`,
+                    </if>
+                    <if test="fetchFields.excludeFields.historyIntegration==null">
+                        `history_integration`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof top.lllyl2012.gmall.bean.UmsMember$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

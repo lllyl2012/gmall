@@ -1,4 +1,4 @@
-package top.lllyl2012.gmall.user.impl;
+package top.lllyl2012.gmall.user.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
