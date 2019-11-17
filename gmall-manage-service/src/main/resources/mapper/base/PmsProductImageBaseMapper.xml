@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lllyl2012.gmall.manage.mapper.base.PmsProductImageBaseMapper">
+
+
+    <insert id="insertPmsProductImage"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `pms_product_image`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="productId!=null">
+                        `product_id`,
+                    </if>
+                    <if test="imgName!=null">
+                        `img_name`,
+                    </if>
+                    <if test="imgUrl!=null">
+                        `img_url`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="productId!=null">
+                    #{productId},
+                </if>
+                <if test="imgName!=null">
+                    #{imgName},
+                </if>
+                <if test="imgUrl!=null">
+                    #{imgUrl},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePmsProductImage">
+        UPDATE `pms_product_image`
+        SET
+        <trim suffixOverrides=",">
+            <if test="productId != null">
+                `product_id` = #{productId},
+            </if>
+            <if test="imgName != null and imgName!=''">
+                `img_name` = #{imgName},
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `pms_product_image`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.productId != null">
+            `product_id` = #{set.productId},
+        </if>
+        <if test="set.imgName != null and set.imgName!=''">
+            `img_name` = #{set.imgName},
+        </if>
+        <if test="set.imgUrl != null and set.imgUrl!=''">
+            `img_url` = #{set.imgUrl},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.productIdList != null">
+                    `product_id` in
+                    <foreach collection="where.productIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.productIdSt !=null">
+                `product_id` >= #{where.productIdSt} and
+            </if>
+            <if test="where.productIdEd!=null">
+                `product_id` &lt;= #{where.productIdEd} and
+            </if>
+                <if test="where.imgNameList != null">
+                    `img_name` in
+                    <foreach collection="where.imgNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyImgName!=null and where.fuzzyImgName.size()>0">
+                (
+                <foreach collection="where.fuzzyImgName"  separator="or" item="item">
+                    `Img_name` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyImgName!=null and where.rightFuzzyImgName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyImgName"  separator="or" item="item">
+                    `Img_name` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.imgUrlList != null">
+                    `img_url` in
+                    <foreach collection="where.imgUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyImgUrl!=null and where.fuzzyImgUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyImgUrl"  separator="or" item="item">
+                    `Img_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyImgUrl!=null and where.rightFuzzyImgUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyImgUrl"  separator="or" item="item">
+                    `Img_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="top.lllyl2012.gmall.bean.PmsProductImage" id="PmsProductImageMap">
+        <result property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="imgName" column="img_name"/>
+        <result property="imgUrl" column="img_url"/>
+    </resultMap>
+
+
+    <select id="queryPmsProductImage" resultMap="PmsProductImageMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_product_image`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="productId != null">
+                `product_id` = #{productId} and
+            </if>
+            <if test="imgName != null and imgName!=''">
+                `img_name` = #{imgName} and
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductImage$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="productIdList != null">
+                    `product_id` in
+                    <foreach collection="productIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="productIdSt !=null">
+                    `product_id` >= #{productIdSt} and
+                </if>
+                <if test="productIdEd!=null">
+                    `product_id` &lt;= #{productIdEd} and
+                </if>
+                <if test="imgNameList != null">
+                    `img_name` in
+                    <foreach collection="imgNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyImgName!=null and fuzzyImgName.size()>0">
+                    (
+                    <foreach collection="fuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgName!=null and rightFuzzyImgName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="imgUrlList != null">
+                    `img_url` in
+                    <foreach collection="imgUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyImgUrl!=null and fuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgUrl!=null and rightFuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryPmsProductImageLimit1" resultMap="PmsProductImageMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_product_image`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="productId != null">
+                `product_id` = #{productId} and
+            </if>
+            <if test="imgName != null and imgName!=''">
+                `img_name` = #{imgName} and
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductImage$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="productIdList != null">
+                        `product_id` in
+                        <foreach collection="productIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="productIdSt !=null">
+                    `product_id` >= #{productIdSt} and
+                </if>
+                <if test="productIdEd!=null">
+                    `product_id` &lt;= #{productIdEd} and
+                </if>
+                    <if test="imgNameList != null">
+                        `img_name` in
+                        <foreach collection="imgNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyImgName!=null and fuzzyImgName.size()>0">
+                    (
+                    <foreach collection="fuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgName!=null and rightFuzzyImgName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="imgUrlList != null">
+                        `img_url` in
+                        <foreach collection="imgUrlList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyImgUrl!=null and fuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgUrl!=null and rightFuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `product_id`,
+        `img_name`,
+        `img_url`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductImage$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.productId==true">
+                        `product_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.imgName==true">
+                        `img_name`,
+                    </if>
+                    <if test="fetchFields.fetchFields.imgUrl==true">
+                        `img_url`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.productId==null">
+                        `product_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.imgName==null">
+                        `img_name`,
+                    </if>
+                    <if test="fetchFields.excludeFields.imgUrl==null">
+                        `img_url`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductImage$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

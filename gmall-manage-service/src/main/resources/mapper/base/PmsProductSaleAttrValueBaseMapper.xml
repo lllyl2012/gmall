@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lllyl2012.gmall.manage.mapper.base.PmsProductSaleAttrValueBaseMapper">
+
+
+    <insert id="insertPmsProductSaleAttrValue"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `pms_product_sale_attr_value`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="productId!=null">
+                        `product_id`,
+                    </if>
+                    <if test="saleAttrId!=null">
+                        `sale_attr_id`,
+                    </if>
+                    <if test="saleAttrValueName!=null">
+                        `sale_attr_value_name`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="productId!=null">
+                    #{productId},
+                </if>
+                <if test="saleAttrId!=null">
+                    #{saleAttrId},
+                </if>
+                <if test="saleAttrValueName!=null">
+                    #{saleAttrValueName},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePmsProductSaleAttrValue">
+        UPDATE `pms_product_sale_attr_value`
+        SET
+        <trim suffixOverrides=",">
+            <if test="productId != null">
+                `product_id` = #{productId},
+            </if>
+            <if test="saleAttrId != null">
+                `sale_attr_id` = #{saleAttrId},
+            </if>
+            <if test="saleAttrValueName != null and saleAttrValueName!=''">
+                `sale_attr_value_name` = #{saleAttrValueName},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `pms_product_sale_attr_value`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.productId != null">
+            `product_id` = #{set.productId},
+        </if>
+        <if test="set.saleAttrId != null">
+            `sale_attr_id` = #{set.saleAttrId},
+        </if>
+        <if test="set.saleAttrValueName != null and set.saleAttrValueName!=''">
+            `sale_attr_value_name` = #{set.saleAttrValueName},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.productIdList != null">
+                    `product_id` in
+                    <foreach collection="where.productIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.productIdSt !=null">
+                `product_id` >= #{where.productIdSt} and
+            </if>
+            <if test="where.productIdEd!=null">
+                `product_id` &lt;= #{where.productIdEd} and
+            </if>
+                <if test="where.saleAttrIdList != null">
+                    `sale_attr_id` in
+                    <foreach collection="where.saleAttrIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.saleAttrIdSt !=null">
+                `sale_attr_id` >= #{where.saleAttrIdSt} and
+            </if>
+            <if test="where.saleAttrIdEd!=null">
+                `sale_attr_id` &lt;= #{where.saleAttrIdEd} and
+            </if>
+                <if test="where.saleAttrValueNameList != null">
+                    `sale_attr_value_name` in
+                    <foreach collection="where.saleAttrValueNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzySaleAttrValueName!=null and where.fuzzySaleAttrValueName.size()>0">
+                (
+                <foreach collection="where.fuzzySaleAttrValueName"  separator="or" item="item">
+                    `Sale_attr_value_name` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzySaleAttrValueName!=null and where.rightFuzzySaleAttrValueName.size()>0">
+                (
+                <foreach collection="where.rightFuzzySaleAttrValueName"  separator="or" item="item">
+                    `Sale_attr_value_name` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="top.lllyl2012.gmall.bean.PmsProductSaleAttrValue" id="PmsProductSaleAttrValueMap">
+        <result property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="saleAttrId" column="sale_attr_id"/>
+        <result property="saleAttrValueName" column="sale_attr_value_name"/>
+    </resultMap>
+
+
+    <select id="queryPmsProductSaleAttrValue" resultMap="PmsProductSaleAttrValueMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_product_sale_attr_value`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="productId != null">
+                `product_id` = #{productId} and
+            </if>
+            <if test="saleAttrId != null">
+                `sale_attr_id` = #{saleAttrId} and
+            </if>
+            <if test="saleAttrValueName != null and saleAttrValueName!=''">
+                `sale_attr_value_name` = #{saleAttrValueName} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductSaleAttrValue$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="productIdList != null">
+                    `product_id` in
+                    <foreach collection="productIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="productIdSt !=null">
+                    `product_id` >= #{productIdSt} and
+                </if>
+                <if test="productIdEd!=null">
+                    `product_id` &lt;= #{productIdEd} and
+                </if>
+                <if test="saleAttrIdList != null">
+                    `sale_attr_id` in
+                    <foreach collection="saleAttrIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="saleAttrIdSt !=null">
+                    `sale_attr_id` >= #{saleAttrIdSt} and
+                </if>
+                <if test="saleAttrIdEd!=null">
+                    `sale_attr_id` &lt;= #{saleAttrIdEd} and
+                </if>
+                <if test="saleAttrValueNameList != null">
+                    `sale_attr_value_name` in
+                    <foreach collection="saleAttrValueNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzySaleAttrValueName!=null and fuzzySaleAttrValueName.size()>0">
+                    (
+                    <foreach collection="fuzzySaleAttrValueName"  separator="or" item="item">
+                        `Sale_attr_value_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzySaleAttrValueName!=null and rightFuzzySaleAttrValueName.size()>0">
+                    (
+                    <foreach collection="rightFuzzySaleAttrValueName"  separator="or" item="item">
+                        `Sale_attr_value_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryPmsProductSaleAttrValueLimit1" resultMap="PmsProductSaleAttrValueMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_product_sale_attr_value`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="productId != null">
+                `product_id` = #{productId} and
+            </if>
+            <if test="saleAttrId != null">
+                `sale_attr_id` = #{saleAttrId} and
+            </if>
+            <if test="saleAttrValueName != null and saleAttrValueName!=''">
+                `sale_attr_value_name` = #{saleAttrValueName} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductSaleAttrValue$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="productIdList != null">
+                        `product_id` in
+                        <foreach collection="productIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="productIdSt !=null">
+                    `product_id` >= #{productIdSt} and
+                </if>
+                <if test="productIdEd!=null">
+                    `product_id` &lt;= #{productIdEd} and
+                </if>
+                    <if test="saleAttrIdList != null">
+                        `sale_attr_id` in
+                        <foreach collection="saleAttrIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="saleAttrIdSt !=null">
+                    `sale_attr_id` >= #{saleAttrIdSt} and
+                </if>
+                <if test="saleAttrIdEd!=null">
+                    `sale_attr_id` &lt;= #{saleAttrIdEd} and
+                </if>
+                    <if test="saleAttrValueNameList != null">
+                        `sale_attr_value_name` in
+                        <foreach collection="saleAttrValueNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzySaleAttrValueName!=null and fuzzySaleAttrValueName.size()>0">
+                    (
+                    <foreach collection="fuzzySaleAttrValueName"  separator="or" item="item">
+                        `Sale_attr_value_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzySaleAttrValueName!=null and rightFuzzySaleAttrValueName.size()>0">
+                    (
+                    <foreach collection="rightFuzzySaleAttrValueName"  separator="or" item="item">
+                        `Sale_attr_value_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `product_id`,
+        `sale_attr_id`,
+        `sale_attr_value_name`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductSaleAttrValue$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.productId==true">
+                        `product_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.saleAttrId==true">
+                        `sale_attr_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.saleAttrValueName==true">
+                        `sale_attr_value_name`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.productId==null">
+                        `product_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.saleAttrId==null">
+                        `sale_attr_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.saleAttrValueName==null">
+                        `sale_attr_value_name`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductSaleAttrValue$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

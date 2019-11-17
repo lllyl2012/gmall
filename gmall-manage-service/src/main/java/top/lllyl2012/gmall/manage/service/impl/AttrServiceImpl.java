@@ -3,6 +3,7 @@ package top.lllyl2012.gmall.manage.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.lllyl2012.gmall.bean.PmsBaseAttrInfo;
+import top.lllyl2012.gmall.bean.PmsBaseAttrValue;
 import top.lllyl2012.gmall.manage.mapper.PmsBaseAttrInfoMapper;
 import top.lllyl2012.gmall.manage.mapper.PmsBaseAttrValueMapper;
 import top.lllyl2012.gmall.service.AttrService;
@@ -27,11 +28,20 @@ public class AttrServiceImpl implements AttrService {
 
     @Override
     public void saveAttrInfo(PmsBaseAttrInfo pmsBaseAttrInfo) {
-        pmsBaseAttrInfoMapper.insertPmsBaseAttrInfo(pmsBaseAttrInfo);
-
+        if (pmsBaseAttrInfo.getId() == null) {
+            pmsBaseAttrInfoMapper.insertPmsBaseAttrInfo(pmsBaseAttrInfo);
+        }else {
+            pmsBaseAttrInfoMapper.updatePmsBaseAttrInfo(pmsBaseAttrInfo);
+            pmsBaseAttrValueMapper.deleteByAttrId(pmsBaseAttrInfo.getId());
+        }
         pmsBaseAttrInfo.getAttrValueList().forEach(i->{
             i.setAttrId(pmsBaseAttrInfo.getId());
             pmsBaseAttrValueMapper.insertPmsBaseAttrValue(i);
         });
+    }
+
+    @Override
+    public List<PmsBaseAttrValue> getAttrValueList(PmsBaseAttrValue pmsBaseAttrValue) {
+        return pmsBaseAttrValueMapper.queryPmsBaseAttrValue(pmsBaseAttrValue);
     }
 }

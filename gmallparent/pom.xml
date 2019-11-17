@@ -155,7 +155,6 @@
                 <version>${beanUtils.version}</version>
             </dependency>
 
-
         </dependencies>
     </dependencyManagement>
 </project>

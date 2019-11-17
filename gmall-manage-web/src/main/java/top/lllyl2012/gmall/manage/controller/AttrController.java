@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.lllyl2012.gmall.bean.PmsBaseAttrInfo;
+import top.lllyl2012.gmall.bean.PmsBaseAttrValue;
 import top.lllyl2012.gmall.service.AttrService;
 
 import java.util.List;
@@ -30,4 +31,11 @@ public class AttrController {
         attrService.saveAttrInfo(pmsBaseAttrInfo);
         return "success";
     }
+
+    @RequestMapping("/getAttrValueList")
+    @ResponseBody
+    public List<PmsBaseAttrValue> getAttrValueList(PmsBaseAttrValue pmsBaseAttrValue) {
+        return attrService.getAttrValueList(pmsBaseAttrValue);
+    }
+
 }

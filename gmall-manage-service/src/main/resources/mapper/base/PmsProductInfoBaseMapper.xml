@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lllyl2012.gmall.manage.mapper.base.PmsProductInfoBaseMapper">
+
+
+    <insert id="insertPmsProductInfo"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `pms_product_info`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="productName!=null">
+                        `product_name`,
+                    </if>
+                    <if test="description!=null">
+                        `description`,
+                    </if>
+                    <if test="catalog3Id!=null">
+                        `catalog3_id`,
+                    </if>
+                    <if test="tmId!=null">
+                        `tm_id`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="productName!=null">
+                    #{productName},
+                </if>
+                <if test="description!=null">
+                    #{description},
+                </if>
+                <if test="catalog3Id!=null">
+                    #{catalog3Id},
+                </if>
+                <if test="tmId!=null">
+                    #{tmId},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePmsProductInfo">
+        UPDATE `pms_product_info`
+        SET
+        <trim suffixOverrides=",">
+            <if test="productName != null and productName!=''">
+                `product_name` = #{productName},
+            </if>
+            <if test="description != null and description!=''">
+                `description` = #{description},
+            </if>
+            <if test="catalog3Id != null">
+                `catalog3_id` = #{catalog3Id},
+            </if>
+            <if test="tmId != null">
+                `tm_id` = #{tmId},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `pms_product_info`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.productName != null and set.productName!=''">
+            `product_name` = #{set.productName},
+        </if>
+        <if test="set.description != null and set.description!=''">
+            `description` = #{set.description},
+        </if>
+        <if test="set.catalog3Id != null">
+            `catalog3_id` = #{set.catalog3Id},
+        </if>
+        <if test="set.tmId != null">
+            `tm_id` = #{set.tmId},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.productNameList != null">
+                    `product_name` in
+                    <foreach collection="where.productNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyProductName!=null and where.fuzzyProductName.size()>0">
+                (
+                <foreach collection="where.fuzzyProductName"  separator="or" item="item">
+                    `Product_name` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyProductName!=null and where.rightFuzzyProductName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyProductName"  separator="or" item="item">
+                    `Product_name` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.descriptionList != null">
+                    `description` in
+                    <foreach collection="where.descriptionList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyDescription!=null and where.fuzzyDescription.size()>0">
+                (
+                <foreach collection="where.fuzzyDescription"  separator="or" item="item">
+                    `Description` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyDescription!=null and where.rightFuzzyDescription.size()>0">
+                (
+                <foreach collection="where.rightFuzzyDescription"  separator="or" item="item">
+                    `Description` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.catalog3IdList != null">
+                    `catalog3_id` in
+                    <foreach collection="where.catalog3IdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.catalog3IdSt !=null">
+                `catalog3_id` >= #{where.catalog3IdSt} and
+            </if>
+            <if test="where.catalog3IdEd!=null">
+                `catalog3_id` &lt;= #{where.catalog3IdEd} and
+            </if>
+                <if test="where.tmIdList != null">
+                    `tm_id` in
+                    <foreach collection="where.tmIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.tmIdSt !=null">
+                `tm_id` >= #{where.tmIdSt} and
+            </if>
+            <if test="where.tmIdEd!=null">
+                `tm_id` &lt;= #{where.tmIdEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="top.lllyl2012.gmall.bean.PmsProductInfo" id="PmsProductInfoMap">
+        <result property="id" column="id"/>
+        <result property="productName" column="product_name"/>
+        <result property="description" column="description"/>
+        <result property="catalog3Id" column="catalog3_id"/>
+        <result property="tmId" column="tm_id"/>
+    </resultMap>
+
+
+    <select id="queryPmsProductInfo" resultMap="PmsProductInfoMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_product_info`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="productName != null and productName!=''">
+                `product_name` = #{productName} and
+            </if>
+            <if test="description != null and description!=''">
+                `description` = #{description} and
+            </if>
+            <if test="catalog3Id != null">
+                `catalog3_id` = #{catalog3Id} and
+            </if>
+            <if test="tmId != null">
+                `tm_id` = #{tmId} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductInfo$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="productNameList != null">
+                    `product_name` in
+                    <foreach collection="productNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyProductName!=null and fuzzyProductName.size()>0">
+                    (
+                    <foreach collection="fuzzyProductName"  separator="or" item="item">
+                        `Product_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyProductName!=null and rightFuzzyProductName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyProductName"  separator="or" item="item">
+                        `Product_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="descriptionList != null">
+                    `description` in
+                    <foreach collection="descriptionList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyDescription!=null and fuzzyDescription.size()>0">
+                    (
+                    <foreach collection="fuzzyDescription"  separator="or" item="item">
+                        `Description` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyDescription!=null and rightFuzzyDescription.size()>0">
+                    (
+                    <foreach collection="rightFuzzyDescription"  separator="or" item="item">
+                        `Description` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="catalog3IdList != null">
+                    `catalog3_id` in
+                    <foreach collection="catalog3IdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="catalog3IdSt !=null">
+                    `catalog3_id` >= #{catalog3IdSt} and
+                </if>
+                <if test="catalog3IdEd!=null">
+                    `catalog3_id` &lt;= #{catalog3IdEd} and
+                </if>
+                <if test="tmIdList != null">
+                    `tm_id` in
+                    <foreach collection="tmIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="tmIdSt !=null">
+                    `tm_id` >= #{tmIdSt} and
+                </if>
+                <if test="tmIdEd!=null">
+                    `tm_id` &lt;= #{tmIdEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryPmsProductInfoLimit1" resultMap="PmsProductInfoMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_product_info`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="productName != null and productName!=''">
+                `product_name` = #{productName} and
+            </if>
+            <if test="description != null and description!=''">
+                `description` = #{description} and
+            </if>
+            <if test="catalog3Id != null">
+                `catalog3_id` = #{catalog3Id} and
+            </if>
+            <if test="tmId != null">
+                `tm_id` = #{tmId} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductInfo$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="productNameList != null">
+                        `product_name` in
+                        <foreach collection="productNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyProductName!=null and fuzzyProductName.size()>0">
+                    (
+                    <foreach collection="fuzzyProductName"  separator="or" item="item">
+                        `Product_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyProductName!=null and rightFuzzyProductName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyProductName"  separator="or" item="item">
+                        `Product_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="descriptionList != null">
+                        `description` in
+                        <foreach collection="descriptionList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyDescription!=null and fuzzyDescription.size()>0">
+                    (
+                    <foreach collection="fuzzyDescription"  separator="or" item="item">
+                        `Description` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyDescription!=null and rightFuzzyDescription.size()>0">
+                    (
+                    <foreach collection="rightFuzzyDescription"  separator="or" item="item">
+                        `Description` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="catalog3IdList != null">
+                        `catalog3_id` in
+                        <foreach collection="catalog3IdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="catalog3IdSt !=null">
+                    `catalog3_id` >= #{catalog3IdSt} and
+                </if>
+                <if test="catalog3IdEd!=null">
+                    `catalog3_id` &lt;= #{catalog3IdEd} and
+                </if>
+                    <if test="tmIdList != null">
+                        `tm_id` in
+                        <foreach collection="tmIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="tmIdSt !=null">
+                    `tm_id` >= #{tmIdSt} and
+                </if>
+                <if test="tmIdEd!=null">
+                    `tm_id` &lt;= #{tmIdEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `product_name`,
+        `description`,
+        `catalog3_id`,
+        `tm_id`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductInfo$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.productName==true">
+                        `product_name`,
+                    </if>
+                    <if test="fetchFields.fetchFields.description==true">
+                        `description`,
+                    </if>
+                    <if test="fetchFields.fetchFields.catalog3Id==true">
+                        `catalog3_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.tmId==true">
+                        `tm_id`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.productName==null">
+                        `product_name`,
+                    </if>
+                    <if test="fetchFields.excludeFields.description==null">
+                        `description`,
+                    </if>
+                    <if test="fetchFields.excludeFields.catalog3Id==null">
+                        `catalog3_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.tmId==null">
+                        `tm_id`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof top.lllyl2012.gmall.bean.PmsProductInfo$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

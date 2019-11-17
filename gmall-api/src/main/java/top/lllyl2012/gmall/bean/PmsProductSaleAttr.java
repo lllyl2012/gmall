@@ -10,7 +10,7 @@ import java.util.List;
 */
 public class PmsProductSaleAttr implements Serializable {
 
-    private static final long serialVersionUID = 1573824735440L;
+    private static final long serialVersionUID = 1573991715409L;
 
 
     /**
