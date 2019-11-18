@@ -10,7 +10,7 @@ import java.util.List;
 */
 public class PmsProductSaleAttr implements Serializable {
 
-    private static final long serialVersionUID = 1573991715409L;
+    private static final long serialVersionUID = 1574078570041L;
 
 
     /**
@@ -38,6 +38,15 @@ public class PmsProductSaleAttr implements Serializable {
     */
     private String saleAttrName;
 
+    private List<PmsProductSaleAttrValue> spuSaleAttrValueList;
+
+    public List<PmsProductSaleAttrValue> getSpuSaleAttrValueList() {
+        return spuSaleAttrValueList;
+    }
+
+    public void setSpuSaleAttrValueList(List<PmsProductSaleAttrValue> spuSaleAttrValueList) {
+        this.spuSaleAttrValueList = spuSaleAttrValueList;
+    }
 
     public void setId(Long id){this.id = id;}
 

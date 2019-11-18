@@ -44,6 +44,25 @@ public class PmsProductInfo implements Serializable {
     */
     private Long tmId;
 
+    private List<PmsProductImage> spuImageList;
+
+    private List<PmsProductSaleAttr> spuSaleAttrList;
+
+    public List<PmsProductImage> getSpuImageList() {
+        return spuImageList;
+    }
+
+    public void setSpuImageList(List<PmsProductImage> spuImageList) {
+        this.spuImageList = spuImageList;
+    }
+
+    public List<PmsProductSaleAttr> getSpuSaleAttrList() {
+        return spuSaleAttrList;
+    }
+
+    public void setSpuSaleAttrList(List<PmsProductSaleAttr> spuSaleAttrList) {
+        this.spuSaleAttrList = spuSaleAttrList;
+    }
 
     public void setId(Long id){this.id = id;}
 
