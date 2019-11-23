@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lllyl2012.gmall.manage.mapper.base.PmsSkuImageBaseMapper">
+
+
+    <insert id="insertPmsSkuImage"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `pms_sku_image`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="skuId!=null">
+                        `sku_id`,
+                    </if>
+                    <if test="imgName!=null">
+                        `img_name`,
+                    </if>
+                    <if test="imgUrl!=null">
+                        `img_url`,
+                    </if>
+                    <if test="productImgId!=null">
+                        `product_img_id`,
+                    </if>
+                    <if test="isDefault!=null">
+                        `is_default`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="skuId!=null">
+                    #{skuId},
+                </if>
+                <if test="imgName!=null">
+                    #{imgName},
+                </if>
+                <if test="imgUrl!=null">
+                    #{imgUrl},
+                </if>
+                <if test="productImgId!=null">
+                    #{productImgId},
+                </if>
+                <if test="isDefault!=null">
+                    #{isDefault},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePmsSkuImage">
+        UPDATE `pms_sku_image`
+        SET
+        <trim suffixOverrides=",">
+            <if test="skuId != null">
+                `sku_id` = #{skuId},
+            </if>
+            <if test="imgName != null and imgName!=''">
+                `img_name` = #{imgName},
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl},
+            </if>
+            <if test="productImgId != null">
+                `product_img_id` = #{productImgId},
+            </if>
+            <if test="isDefault != null and isDefault!=''">
+                `is_default` = #{isDefault},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `pms_sku_image`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.skuId != null">
+            `sku_id` = #{set.skuId},
+        </if>
+        <if test="set.imgName != null and set.imgName!=''">
+            `img_name` = #{set.imgName},
+        </if>
+        <if test="set.imgUrl != null and set.imgUrl!=''">
+            `img_url` = #{set.imgUrl},
+        </if>
+        <if test="set.productImgId != null">
+            `product_img_id` = #{set.productImgId},
+        </if>
+        <if test="set.isDefault != null and set.isDefault!=''">
+            `is_default` = #{set.isDefault},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.skuIdList != null">
+                    `sku_id` in
+                    <foreach collection="where.skuIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.skuIdSt !=null">
+                `sku_id` >= #{where.skuIdSt} and
+            </if>
+            <if test="where.skuIdEd!=null">
+                `sku_id` &lt;= #{where.skuIdEd} and
+            </if>
+                <if test="where.imgNameList != null">
+                    `img_name` in
+                    <foreach collection="where.imgNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyImgName!=null and where.fuzzyImgName.size()>0">
+                (
+                <foreach collection="where.fuzzyImgName"  separator="or" item="item">
+                    `Img_name` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyImgName!=null and where.rightFuzzyImgName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyImgName"  separator="or" item="item">
+                    `Img_name` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.imgUrlList != null">
+                    `img_url` in
+                    <foreach collection="where.imgUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyImgUrl!=null and where.fuzzyImgUrl.size()>0">
+                (
+                <foreach collection="where.fuzzyImgUrl"  separator="or" item="item">
+                    `Img_url` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyImgUrl!=null and where.rightFuzzyImgUrl.size()>0">
+                (
+                <foreach collection="where.rightFuzzyImgUrl"  separator="or" item="item">
+                    `Img_url` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.productImgIdList != null">
+                    `product_img_id` in
+                    <foreach collection="where.productImgIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.productImgIdSt !=null">
+                `product_img_id` >= #{where.productImgIdSt} and
+            </if>
+            <if test="where.productImgIdEd!=null">
+                `product_img_id` &lt;= #{where.productImgIdEd} and
+            </if>
+                <if test="where.isDefaultList != null">
+                    `is_default` in
+                    <foreach collection="where.isDefaultList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyIsDefault!=null and where.fuzzyIsDefault.size()>0">
+                (
+                <foreach collection="where.fuzzyIsDefault"  separator="or" item="item">
+                    `Is_default` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyIsDefault!=null and where.rightFuzzyIsDefault.size()>0">
+                (
+                <foreach collection="where.rightFuzzyIsDefault"  separator="or" item="item">
+                    `Is_default` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="top.lllyl2012.gmall.bean.PmsSkuImage" id="PmsSkuImageMap">
+        <result property="id" column="id"/>
+        <result property="skuId" column="sku_id"/>
+        <result property="imgName" column="img_name"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="productImgId" column="product_img_id"/>
+        <result property="isDefault" column="is_default"/>
+    </resultMap>
+
+
+    <select id="queryPmsSkuImage" resultMap="PmsSkuImageMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_sku_image`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="skuId != null">
+                `sku_id` = #{skuId} and
+            </if>
+            <if test="imgName != null and imgName!=''">
+                `img_name` = #{imgName} and
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl} and
+            </if>
+            <if test="productImgId != null">
+                `product_img_id` = #{productImgId} and
+            </if>
+            <if test="isDefault != null and isDefault!=''">
+                `is_default` = #{isDefault} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsSkuImage$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="skuIdList != null">
+                    `sku_id` in
+                    <foreach collection="skuIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="skuIdSt !=null">
+                    `sku_id` >= #{skuIdSt} and
+                </if>
+                <if test="skuIdEd!=null">
+                    `sku_id` &lt;= #{skuIdEd} and
+                </if>
+                <if test="imgNameList != null">
+                    `img_name` in
+                    <foreach collection="imgNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyImgName!=null and fuzzyImgName.size()>0">
+                    (
+                    <foreach collection="fuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgName!=null and rightFuzzyImgName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="imgUrlList != null">
+                    `img_url` in
+                    <foreach collection="imgUrlList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyImgUrl!=null and fuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgUrl!=null and rightFuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="productImgIdList != null">
+                    `product_img_id` in
+                    <foreach collection="productImgIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="productImgIdSt !=null">
+                    `product_img_id` >= #{productImgIdSt} and
+                </if>
+                <if test="productImgIdEd!=null">
+                    `product_img_id` &lt;= #{productImgIdEd} and
+                </if>
+                <if test="isDefaultList != null">
+                    `is_default` in
+                    <foreach collection="isDefaultList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyIsDefault!=null and fuzzyIsDefault.size()>0">
+                    (
+                    <foreach collection="fuzzyIsDefault"  separator="or" item="item">
+                        `Is_default` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyIsDefault!=null and rightFuzzyIsDefault.size()>0">
+                    (
+                    <foreach collection="rightFuzzyIsDefault"  separator="or" item="item">
+                        `Is_default` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryPmsSkuImageLimit1" resultMap="PmsSkuImageMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_sku_image`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="skuId != null">
+                `sku_id` = #{skuId} and
+            </if>
+            <if test="imgName != null and imgName!=''">
+                `img_name` = #{imgName} and
+            </if>
+            <if test="imgUrl != null and imgUrl!=''">
+                `img_url` = #{imgUrl} and
+            </if>
+            <if test="productImgId != null">
+                `product_img_id` = #{productImgId} and
+            </if>
+            <if test="isDefault != null and isDefault!=''">
+                `is_default` = #{isDefault} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsSkuImage$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="skuIdList != null">
+                        `sku_id` in
+                        <foreach collection="skuIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="skuIdSt !=null">
+                    `sku_id` >= #{skuIdSt} and
+                </if>
+                <if test="skuIdEd!=null">
+                    `sku_id` &lt;= #{skuIdEd} and
+                </if>
+                    <if test="imgNameList != null">
+                        `img_name` in
+                        <foreach collection="imgNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyImgName!=null and fuzzyImgName.size()>0">
+                    (
+                    <foreach collection="fuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgName!=null and rightFuzzyImgName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgName"  separator="or" item="item">
+                        `Img_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="imgUrlList != null">
+                        `img_url` in
+                        <foreach collection="imgUrlList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyImgUrl!=null and fuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="fuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyImgUrl!=null and rightFuzzyImgUrl.size()>0">
+                    (
+                    <foreach collection="rightFuzzyImgUrl"  separator="or" item="item">
+                        `Img_url` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="productImgIdList != null">
+                        `product_img_id` in
+                        <foreach collection="productImgIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="productImgIdSt !=null">
+                    `product_img_id` >= #{productImgIdSt} and
+                </if>
+                <if test="productImgIdEd!=null">
+                    `product_img_id` &lt;= #{productImgIdEd} and
+                </if>
+                    <if test="isDefaultList != null">
+                        `is_default` in
+                        <foreach collection="isDefaultList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyIsDefault!=null and fuzzyIsDefault.size()>0">
+                    (
+                    <foreach collection="fuzzyIsDefault"  separator="or" item="item">
+                        `Is_default` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyIsDefault!=null and rightFuzzyIsDefault.size()>0">
+                    (
+                    <foreach collection="rightFuzzyIsDefault"  separator="or" item="item">
+                        `Is_default` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `sku_id`,
+        `img_name`,
+        `img_url`,
+        `product_img_id`,
+        `is_default`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsSkuImage$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.skuId==true">
+                        `sku_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.imgName==true">
+                        `img_name`,
+                    </if>
+                    <if test="fetchFields.fetchFields.imgUrl==true">
+                        `img_url`,
+                    </if>
+                    <if test="fetchFields.fetchFields.productImgId==true">
+                        `product_img_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.isDefault==true">
+                        `is_default`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.skuId==null">
+                        `sku_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.imgName==null">
+                        `img_name`,
+                    </if>
+                    <if test="fetchFields.excludeFields.imgUrl==null">
+                        `img_url`,
+                    </if>
+                    <if test="fetchFields.excludeFields.productImgId==null">
+                        `product_img_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.isDefault==null">
+                        `is_default`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof top.lllyl2012.gmall.bean.PmsSkuImage$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

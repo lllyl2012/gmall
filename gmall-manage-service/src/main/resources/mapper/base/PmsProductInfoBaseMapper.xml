@@ -279,6 +279,7 @@
                 </if>
             </if>
         </trim>
+        order by id desc
     </select>
 
     <select id="queryPmsProductInfoLimit1" resultMap="PmsProductInfoMap">

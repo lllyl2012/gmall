@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lllyl2012.gmall.manage.mapper.base.PmsSkuAttrValueBaseMapper">
+
+
+    <insert id="insertPmsSkuAttrValue"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `pms_sku_attr_value`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="attrId!=null">
+                        `attr_id`,
+                    </if>
+                    <if test="valueId!=null">
+                        `value_id`,
+                    </if>
+                    <if test="skuId!=null">
+                        `sku_id`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="attrId!=null">
+                    #{attrId},
+                </if>
+                <if test="valueId!=null">
+                    #{valueId},
+                </if>
+                <if test="skuId!=null">
+                    #{skuId},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatePmsSkuAttrValue">
+        UPDATE `pms_sku_attr_value`
+        SET
+        <trim suffixOverrides=",">
+            <if test="attrId != null">
+                `attr_id` = #{attrId},
+            </if>
+            <if test="valueId != null">
+                `value_id` = #{valueId},
+            </if>
+            <if test="skuId != null">
+                `sku_id` = #{skuId},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `pms_sku_attr_value`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.attrId != null">
+            `attr_id` = #{set.attrId},
+        </if>
+        <if test="set.valueId != null">
+            `value_id` = #{set.valueId},
+        </if>
+        <if test="set.skuId != null">
+            `sku_id` = #{set.skuId},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.idList != null">
+                    `id` in
+                    <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.idSt !=null">
+                `id` >= #{where.idSt} and
+            </if>
+            <if test="where.idEd!=null">
+                `id` &lt;= #{where.idEd} and
+            </if>
+                <if test="where.attrIdList != null">
+                    `attr_id` in
+                    <foreach collection="where.attrIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.attrIdSt !=null">
+                `attr_id` >= #{where.attrIdSt} and
+            </if>
+            <if test="where.attrIdEd!=null">
+                `attr_id` &lt;= #{where.attrIdEd} and
+            </if>
+                <if test="where.valueIdList != null">
+                    `value_id` in
+                    <foreach collection="where.valueIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.valueIdSt !=null">
+                `value_id` >= #{where.valueIdSt} and
+            </if>
+            <if test="where.valueIdEd!=null">
+                `value_id` &lt;= #{where.valueIdEd} and
+            </if>
+                <if test="where.skuIdList != null">
+                    `sku_id` in
+                    <foreach collection="where.skuIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.skuIdSt !=null">
+                `sku_id` >= #{where.skuIdSt} and
+            </if>
+            <if test="where.skuIdEd!=null">
+                `sku_id` &lt;= #{where.skuIdEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="top.lllyl2012.gmall.bean.PmsSkuAttrValue" id="PmsSkuAttrValueMap">
+        <result property="id" column="id"/>
+        <result property="attrId" column="attr_id"/>
+        <result property="valueId" column="value_id"/>
+        <result property="skuId" column="sku_id"/>
+    </resultMap>
+
+
+    <select id="queryPmsSkuAttrValue" resultMap="PmsSkuAttrValueMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_sku_attr_value`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="attrId != null">
+                `attr_id` = #{attrId} and
+            </if>
+            <if test="valueId != null">
+                `value_id` = #{valueId} and
+            </if>
+            <if test="skuId != null">
+                `sku_id` = #{skuId} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsSkuAttrValue$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                <if test="attrIdList != null">
+                    `attr_id` in
+                    <foreach collection="attrIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="attrIdSt !=null">
+                    `attr_id` >= #{attrIdSt} and
+                </if>
+                <if test="attrIdEd!=null">
+                    `attr_id` &lt;= #{attrIdEd} and
+                </if>
+                <if test="valueIdList != null">
+                    `value_id` in
+                    <foreach collection="valueIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="valueIdSt !=null">
+                    `value_id` >= #{valueIdSt} and
+                </if>
+                <if test="valueIdEd!=null">
+                    `value_id` &lt;= #{valueIdEd} and
+                </if>
+                <if test="skuIdList != null">
+                    `sku_id` in
+                    <foreach collection="skuIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="skuIdSt !=null">
+                    `sku_id` >= #{skuIdSt} and
+                </if>
+                <if test="skuIdEd!=null">
+                    `sku_id` &lt;= #{skuIdEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryPmsSkuAttrValueLimit1" resultMap="PmsSkuAttrValueMap">
+        select
+        <include refid="baseResult"></include>
+        from  `pms_sku_attr_value`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null">
+                `id` = #{id} and
+            </if>
+            <if test="attrId != null">
+                `attr_id` = #{attrId} and
+            </if>
+            <if test="valueId != null">
+                `value_id` = #{valueId} and
+            </if>
+            <if test="skuId != null">
+                `sku_id` = #{skuId} and
+            </if>
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsSkuAttrValue$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="idSt !=null">
+                    `id` >= #{idSt} and
+                </if>
+                <if test="idEd!=null">
+                    `id` &lt;= #{idEd} and
+                </if>
+                    <if test="attrIdList != null">
+                        `attr_id` in
+                        <foreach collection="attrIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="attrIdSt !=null">
+                    `attr_id` >= #{attrIdSt} and
+                </if>
+                <if test="attrIdEd!=null">
+                    `attr_id` &lt;= #{attrIdEd} and
+                </if>
+                    <if test="valueIdList != null">
+                        `value_id` in
+                        <foreach collection="valueIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="valueIdSt !=null">
+                    `value_id` >= #{valueIdSt} and
+                </if>
+                <if test="valueIdEd!=null">
+                    `value_id` &lt;= #{valueIdEd} and
+                </if>
+                    <if test="skuIdList != null">
+                        `sku_id` in
+                        <foreach collection="skuIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="skuIdSt !=null">
+                    `sku_id` >= #{skuIdSt} and
+                </if>
+                <if test="skuIdEd!=null">
+                    `sku_id` &lt;= #{skuIdEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `attr_id`,
+        `value_id`,
+        `sku_id`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof top.lllyl2012.gmall.bean.PmsSkuAttrValue$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.attrId==true">
+                        `attr_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.valueId==true">
+                        `value_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.skuId==true">
+                        `sku_id`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.attrId==null">
+                        `attr_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.valueId==null">
+                        `value_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.skuId==null">
+                        `sku_id`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof top.lllyl2012.gmall.bean.PmsSkuAttrValue$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

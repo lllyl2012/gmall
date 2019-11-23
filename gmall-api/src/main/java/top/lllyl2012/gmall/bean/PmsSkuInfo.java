@@ -10,7 +10,7 @@ import java.util.List;
 */
 public class PmsSkuInfo implements Serializable {
 
-    private static final long serialVersionUID = 1573824747790L;
+    private static final long serialVersionUID = 1574497750283L;
 
 
     /**
@@ -68,6 +68,33 @@ public class PmsSkuInfo implements Serializable {
     */
     private String skuDefaultImg;
 
+    private List<PmsSkuImage> skuImageList;
+    private List<PmsSkuAttrValue> skuAttrValueList;
+    private List<PmsSkuSaleAttrValue> skuSaleAttrValueList;
+
+    public List<PmsSkuImage> getSkuImageList() {
+        return skuImageList;
+    }
+
+    public void setSkuImageList(List<PmsSkuImage> skuImageList) {
+        this.skuImageList = skuImageList;
+    }
+
+    public List<PmsSkuAttrValue> getSkuAttrValueList() {
+        return skuAttrValueList;
+    }
+
+    public void setSkuAttrValueList(List<PmsSkuAttrValue> skuAttrValueList) {
+        this.skuAttrValueList = skuAttrValueList;
+    }
+
+    public List<PmsSkuSaleAttrValue> getSkuSaleAttrValueList() {
+        return skuSaleAttrValueList;
+    }
+
+    public void setSkuSaleAttrValueList(List<PmsSkuSaleAttrValue> skuSaleAttrValueList) {
+        this.skuSaleAttrValueList = skuSaleAttrValueList;
+    }
 
     public void setId(Long id){this.id = id;}
 

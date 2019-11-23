@@ -4,11 +4,13 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import top.lllyl2012.gmall.bean.PmsBaseAttrInfo;
-import top.lllyl2012.gmall.bean.PmsProductInfo;
+import top.lllyl2012.gmall.bean.*;
+import top.lllyl2012.gmall.enums.FileSuffixEnum;
 import top.lllyl2012.gmall.service.SpuService;
+import top.lllyl2012.gmall.utils.FileUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -24,6 +26,18 @@ public class SpuController {
         return spuService.spuList(catalog3Id);
     }
 
+    @RequestMapping("spuSaleAttrList")
+    @ResponseBody
+    public List<PmsProductSaleAttr> spuSaleAttrList(Long spuId){
+        return spuService.spuSaleAttrList(spuId);
+    }
+
+    @RequestMapping("spuImageList")
+    @ResponseBody
+    public List<PmsProductImage> spuImageList(Long spuId){
+        return spuService.spuImageList(spuId);
+    }
+
     @RequestMapping("/saveSpuInfo")
     @ResponseBody
     public String saveSpuInfo(@RequestBody PmsProductInfo pmsProductInfo) {
@@ -32,7 +46,9 @@ public class SpuController {
 
     @RequestMapping("/fileUpload")
     @ResponseBody
-    public String fileUpload(@RequestParam("file") MultipartFile multipartFile) {
-        return "success";
+    public String fileUpload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+        String suffix = multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().lastIndexOf("."));
+        return FileUtil.saveFile(multipartFile.getBytes(), suffix);
     }
+
 }

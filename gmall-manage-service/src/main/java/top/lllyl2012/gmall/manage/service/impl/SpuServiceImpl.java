@@ -3,12 +3,8 @@ package top.lllyl2012.gmall.manage.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import top.lllyl2012.gmall.bean.PmsBaseAttrInfo;
-import top.lllyl2012.gmall.bean.PmsProductInfo;
-import top.lllyl2012.gmall.manage.mapper.PmsProductImageMapper;
-import top.lllyl2012.gmall.manage.mapper.PmsProductInfoMapper;
-import top.lllyl2012.gmall.manage.mapper.PmsProductSaleAttrMapper;
-import top.lllyl2012.gmall.manage.mapper.PmsProductSaleAttrValueMapper;
+import top.lllyl2012.gmall.bean.*;
+import top.lllyl2012.gmall.manage.mapper.*;
 import top.lllyl2012.gmall.service.SpuService;
 
 import java.util.ArrayList;
@@ -60,5 +56,26 @@ public class SpuServiceImpl implements SpuService {
         });
 
         return "success";
+    }
+
+    @Override
+    public List<PmsProductSaleAttr> spuSaleAttrList(Long spuId) {
+        PmsProductSaleAttr pmsProductSaleAttr = new PmsProductSaleAttr();
+        pmsProductSaleAttr.setProductId(spuId);
+        List<PmsProductSaleAttr> pmsProductSaleAttrs = pmsProductSaleAttrMapper.queryPmsProductSaleAttr(pmsProductSaleAttr);
+        pmsProductSaleAttrs.forEach(i->{
+            PmsProductSaleAttrValue pmsProductSaleAttrValue = new PmsProductSaleAttrValue();
+            pmsProductSaleAttrValue.setSaleAttrId(i.getId());
+            pmsProductSaleAttrValue.setProductId(spuId);
+           i.setSpuSaleAttrValueList(pmsProductSaleAttrValueMapper.queryPmsProductSaleAttrValue(pmsProductSaleAttrValue));
+        });
+        return pmsProductSaleAttrs;
+    }
+
+    @Override
+    public List<PmsProductImage> spuImageList(Long spuId) {
+        PmsProductImage pmsProductImage = new PmsProductImage();
+        pmsProductImage.setProductId(spuId);
+        return pmsProductImageMapper.queryPmsProductImage(pmsProductImage);
     }
 }

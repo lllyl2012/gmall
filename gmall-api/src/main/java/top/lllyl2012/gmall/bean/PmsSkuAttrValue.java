@@ -10,7 +10,7 @@ import java.util.List;
 */
 public class PmsSkuAttrValue implements Serializable {
 
-    private static final long serialVersionUID = 1573824742619L;
+    private static final long serialVersionUID = 1574497741775L;
 
 
     /**
