@@ -37,7 +37,6 @@
         <jest.version>5.3.3</jest.version>
         <jna.version>4.5.1</jna.version>
         <beanUtils.version>1.9.3</beanUtils.version>
-        <thymeleaf.version>2.1.1.RELEASE</thymeleaf.version>
     </properties>
 
     <dependencyManagement>
@@ -77,29 +76,23 @@
                 <version>${mybatis.version}</version>
             </dependency>
 
-
-            <!--<dependency>-->
-                <!--<groupId>net.sourceforge.nekohtml</groupId>-->
-                <!--<artifactId>nekohtml</artifactId>-->
-                <!--<version>${nekohtml.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>xml-apis</groupId>-->
-                <!--<artifactId>xml-apis</artifactId>-->
-                <!--<version>${xml-apis.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.apache.xmlgraphics</groupId>-->
-                <!--<artifactId>batik-ext</artifactId>-->
-                <!--<version>${batik-ext.version}</version>-->
-            <!--</dependency>-->
+            <!-- thymeleaf的松校验和热部署 -->
+            <dependency>
+                <groupId>net.sourceforge.nekohtml</groupId>
+                <artifactId>nekohtml</artifactId>
+                <version>${nekohtml.version}</version>
+            </dependency>
 
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-thymeleaf</artifactId>
-                <version>${thymeleaf.version}</version>
+                <groupId>xml-apis</groupId>
+                <artifactId>xml-apis</artifactId>
+                <version>${xml-apis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-ext</artifactId>
+                <version>${batik-ext.version}</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
