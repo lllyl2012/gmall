@@ -38,6 +38,15 @@ public class PmsProductSaleAttrValue implements Serializable {
     */
     private String saleAttrValueName;
 
+    private String ifCheck;
+
+    public String getIfCheck() {
+        return ifCheck;
+    }
+
+    public void setIfCheck(String ifCheck) {
+        this.ifCheck = ifCheck;
+    }
 
     public void setId(Long id){this.id = id;}
 

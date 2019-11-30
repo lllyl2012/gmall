@@ -50,7 +50,7 @@ public class SpuServiceImpl implements SpuService {
 
             i.getSpuSaleAttrValueList().forEach(k->{
                 k.setProductId(pmsProductInfo.getId());
-                k.setSaleAttrId(i.getId());
+                k.setSaleAttrId(i.getSaleAttrId());
                 pmsProductSaleAttrValueMapper.insertPmsProductSaleAttrValue(k);
             });
         });
@@ -65,7 +65,7 @@ public class SpuServiceImpl implements SpuService {
         List<PmsProductSaleAttr> pmsProductSaleAttrs = pmsProductSaleAttrMapper.queryPmsProductSaleAttr(pmsProductSaleAttr);
         pmsProductSaleAttrs.forEach(i->{
             PmsProductSaleAttrValue pmsProductSaleAttrValue = new PmsProductSaleAttrValue();
-            pmsProductSaleAttrValue.setSaleAttrId(i.getId());
+            pmsProductSaleAttrValue.setSaleAttrId(i.getSaleAttrId());
             pmsProductSaleAttrValue.setProductId(spuId);
            i.setSpuSaleAttrValueList(pmsProductSaleAttrValueMapper.queryPmsProductSaleAttrValue(pmsProductSaleAttrValue));
         });
@@ -77,5 +77,27 @@ public class SpuServiceImpl implements SpuService {
         PmsProductImage pmsProductImage = new PmsProductImage();
         pmsProductImage.setProductId(spuId);
         return pmsProductImageMapper.queryPmsProductImage(pmsProductImage);
+    }
+
+    @Override
+    public List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(Long productId,String skuId) {
+//        PmsProductSaleAttr pmsProductSaleAttr = new PmsProductSaleAttr();
+//        pmsProductSaleAttr.setProductId(productId);
+//        List<PmsProductSaleAttr> pmsProductSaleAttrs = pmsProductSaleAttrMapper.queryPmsProductSaleAttr(pmsProductSaleAttr);
+//
+//        for (PmsProductSaleAttr pmsProductSaleAttr1 : pmsProductSaleAttrs ) {
+//            Long saleAttrId = pmsProductSaleAttr1.getSaleAttrId();
+//
+//            PmsProductSaleAttrValue pmsProductSaleAttrValue = new PmsProductSaleAttrValue();
+//            pmsProductSaleAttrValue.setSaleAttrId(saleAttrId);
+//            pmsProductSaleAttrValue.setProductId(productId);
+//            List<PmsProductSaleAttrValue> pmsProductSaleAttrValues = pmsProductSaleAttrValueMapper.queryPmsProductSaleAttrValue(pmsProductSaleAttrValue);
+//
+//            pmsProductSaleAttr1.setSpuSaleAttrValueList(pmsProductSaleAttrValues);
+//        }
+
+        List<PmsProductSaleAttr> pmsProductSaleAttrs = pmsProductSaleAttrMapper.selectSpuSaleAttrListCheckBySku(productId, skuId);
+
+        return pmsProductSaleAttrs;
     }
 }

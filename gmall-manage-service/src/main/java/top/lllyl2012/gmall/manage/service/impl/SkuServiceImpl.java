@@ -11,6 +11,7 @@ import top.lllyl2012.gmall.manage.mapper.PmsSkuSaleAttrValueMapper;
 import top.lllyl2012.gmall.service.SkuService;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,5 +47,19 @@ public class SkuServiceImpl implements SkuService {
             i.setSkuId(pmsSkuInfo.getId());
             pmsSkuSaleAttrValueMapper.insertPmsSkuSaleAttrValue(i);
         });
+    }
+
+    @Override
+    public PmsSkuInfo getSkuById(String skuId) {
+        Long skId = Long.parseLong(skuId);
+
+        PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+        pmsSkuInfo.setId(skId);
+
+        PmsSkuImage pmsSkuImage = new PmsSkuImage();
+        pmsSkuImage.setSkuId(skId);
+        List<PmsSkuImage> pmsSkuImages = pmsSkuImageMapper.queryPmsSkuImage(pmsSkuImage);
+        pmsSkuInfo.setSkuImageList(pmsSkuImages);
+        return pmsSkuInfoMapper.queryPmsSkuInfoLimit1(pmsSkuInfo);
     }
 }

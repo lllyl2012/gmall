@@ -8,6 +8,5 @@ import top.lllyl2012.gmall.manage.mapper.base.PmsProductSaleAttrBaseMapper;
 *  @author volume
 */
 public interface PmsProductSaleAttrMapper extends PmsProductSaleAttrBaseMapper{
-
-
+    List<PmsProductSaleAttr> selectSpuSaleAttrListCheckBySku(@Param("productId") Long productId,@Param("skuId") String skuId);
 }
