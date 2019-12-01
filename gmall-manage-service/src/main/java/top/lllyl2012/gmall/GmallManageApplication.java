@@ -1,4 +1,4 @@
-package top.lllyl2012.gmall.manage;
+package top.lllyl2012.gmall;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

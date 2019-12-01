@@ -9,5 +9,5 @@ import top.lllyl2012.gmall.manage.mapper.base.PmsSkuInfoBaseMapper;
 */
 public interface PmsSkuInfoMapper extends PmsSkuInfoBaseMapper{
 
-
+    List<PmsSkuInfo> selectListByProjectId(@Param("pmsSkuInfo") PmsSkuInfo pmsSkuInfo);
 }

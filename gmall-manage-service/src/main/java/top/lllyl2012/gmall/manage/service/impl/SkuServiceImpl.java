@@ -49,8 +49,7 @@ public class SkuServiceImpl implements SkuService {
         });
     }
 
-    @Override
-    public PmsSkuInfo getSkuById(String skuId) {
+    public PmsSkuInfo getSkuByIdFromDB(String skuId) {
         Long skId = Long.parseLong(skuId);
 
         PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
@@ -58,8 +57,23 @@ public class SkuServiceImpl implements SkuService {
 
         PmsSkuImage pmsSkuImage = new PmsSkuImage();
         pmsSkuImage.setSkuId(skId);
+        PmsSkuInfo pmsSkuInfo1 = pmsSkuInfoMapper.queryPmsSkuInfoLimit1(pmsSkuInfo);
         List<PmsSkuImage> pmsSkuImages = pmsSkuImageMapper.queryPmsSkuImage(pmsSkuImage);
-        pmsSkuInfo.setSkuImageList(pmsSkuImages);
-        return pmsSkuInfoMapper.queryPmsSkuInfoLimit1(pmsSkuInfo);
+        pmsSkuInfo1.setSkuImageList(pmsSkuImages);
+        return pmsSkuInfo1;
+    }
+
+    @Override
+    public PmsSkuInfo getSkuById(String skuId) {
+return null;
+
+    }
+
+    @Override
+    public List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(Long productId) {
+
+        PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+        pmsSkuInfo.setProductId(productId);
+        return pmsSkuInfoMapper.selectListByProjectId(pmsSkuInfo);
     }
 }

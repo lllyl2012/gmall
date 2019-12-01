@@ -3,5 +3,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.lllyl2012.gmall.manage.mapper.PmsSkuInfoMapper">
 
+    <resultMap id="proList" type="top.lllyl2012.gmall.bean.PmsSkuInfo" autoMapping="true">
+        <result column="si_id" property="id"></result>
+        <collection property="skuSaleAttrValueList"  ofType="top.lllyl2012.gmall.bean.PmsSkuSaleAttrValue" autoMapping="true">
+            <result column="ssav_id" property="id"></result>
+        </collection>
+    </resultMap>
 
+    <select id="selectListByProjectId" resultMap="proList">
+        select
+        si.*,ssav.*,si.id as si_id,ssav.id as ssav_id
+        from
+        pms_sku_info si,
+        pms_sku_sale_attr_value ssav
+        where
+        si.product_id = ${pmsSkuInfo.productId}
+        and si.id = ssav.sku_id
+    </select>
 </mapper>
