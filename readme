@@ -1,0 +1,6 @@
+manage-service:8071
+user-service:8070
+
+manage-web:8081
+item-web:8082
+user-web:8080

@@ -37,6 +37,7 @@
         <jest.version>5.3.3</jest.version>
         <jna.version>4.5.1</jna.version>
         <beanUtils.version>1.9.3</beanUtils.version>
+        <redisson.version>3.11.5</redisson.version>
     </properties>
 
     <dependencyManagement>
@@ -161,6 +162,12 @@
                 <version>1.27-RELEASE</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
