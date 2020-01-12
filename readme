@@ -4,3 +4,5 @@ user-service:8070
 manage-web:8081
 item-web:8082
 user-web:8080
+
+order-web:8090

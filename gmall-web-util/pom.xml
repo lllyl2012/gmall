@@ -18,20 +18,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
-    <!--<dependency>-->
-        <!--<groupId>net.sourceforge.nekohtml</groupId>-->
-        <!--<artifactId>nekohtml</artifactId>-->
-    <!--</dependency>-->
-
-    <!--<dependency>-->
-        <!--<groupId>xml-apis</groupId>-->
-        <!--<artifactId>xml-apis</artifactId>-->
-    <!--</dependency>-->
-
-    <!--<dependency>-->
-        <!--<groupId>org.apache.xmlgraphics</groupId>-->
-        <!--<artifactId>batik-ext</artifactId>-->
-    <!--</dependency>-->
     <dependency>
         <groupId>top.lllyl2012</groupId>
         <artifactId>gmall-common-util</artifactId>
@@ -41,6 +27,15 @@
     <dependency>
         <groupId>org.csource</groupId>
         <artifactId>fastdfs-client-java</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>com.auth0</groupId>
+        <artifactId>java-jwt</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
     </dependency>
 </dependencies>
 </project>
